@@ -30,7 +30,7 @@ public class DummyElevator implements IEvent, IElevatorCommand {
 	 * 
 	 */
 	public void trigger() { 
-		// TODO Auto-generated method
+		System.out.println("git");
 	 }
 
 	/**

@@ -1,63 +1,54 @@
 package univavignon.m1informatique.aa.SEA.sequencer.sequencer_int;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ProcessExecutor {
-
-	/**
-	 * 
-	 */
-	private static List<Process> processes;
-	public static long t;
-
-	/**
-	 * Getter of processes
-	 */
-	public List<Process> getProcesses() {
-	 	 return processes; 
+public class ProcessExecutor
+{
+	private ArrayList listProcess = new ArrayList();
+	private long timeMini;
+	private Timer timer;
+	private boolean isInit;
+	private SimulationElevator simuElev;
+	
+	public ProcessExecutor(long Extention, long Contraction, long Origine)
+	{
+		timeMini = -1;
+		isInit = false;
+		simuElev = SimulationElevator.create(Extention, Contraction, Origine);
+		timer = new Timer(simuElev);
+	}
+	
+	public void addEvent(Event e, long t)
+	{
+		if(t < timeMini || timeMini == -1)	timeMini = t;
+		listProcess.add(new Process(e, t));
+	}
+	
+	public void initialise()
+	{
+		isInit=true;
+		simuElev.start();
+		Process tmp;
+		for(int i=0;i<listProcess.size();i++)
+		{
+			tmp = (Process)listProcess.get(i);
+			tmp.active(simuElev.Time());
+		}
 	}
 
-	/**
-	 * 
-	 */
-	public void initialize() { 
-		// TODO Auto-generated method
-		processes = new java.util.ArrayList<Process> ();
-	 }
-
-	/**
-	 * 
-	 */
-	public void sequence() { 
-		// TODO Auto-generated method
-		Runnable r = new Runnable() {
-			@Override
-			public void run() {
-				while(true) {
-					for (Process p : processes) {
-						p.active(t);
-						new Thread().sleep(t);
-					}
-				}
+	public void sequance()
+	{ 
+		if(isInit=false) initialise();
+		Process tmp;
+		while(true)
+		{
+			for(int i=0;i<listProcess.size();i++)
+			{
+				timer.Wait(timeMini);
+				tmp = (Process)listProcess.get(i);
+				tmp.active(simuElev.Time());
 			}
-		};
-		r.run();
-	 }
-
-	/**
-	 * 
-	 * @param process 
-	 */
-	public static void addProcessToList(Process process) { 
-		// TODO Auto-generated method
-		processes.add(process);
-	 }
-
-	/**
-	 * Getter of t
-	 */
-	public long getT() {
-	 	 return t; 
-	}
+		}
+	} 
 
 }

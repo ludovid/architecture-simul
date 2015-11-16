@@ -1,57 +1,32 @@
 package univavignon.m1informatique.aa.SEA.sequencer.sequencer_int;
 
-public class Process {
-
-	/**
-	 * 
-	 */
-	private long period;
-	/**
-	 * 
-	 */
-	private IEvent iEvent;
-
-	/**
-	 * Getter of period
-	 */
-	public long getPeriod() {
-	 	 return period; 
+public class Process
+{
+	private Event event;
+	private long timeRepetition, lastTrigger;
+	private boolean firstUse;
+	static int cc = 0;
+	int ccc;
+	
+	public Process(Event e, long t)
+	{
+		event = e; 
+		timeRepetition = t;
+		lastTrigger = 0;
+		firstUse = true;
+		cc++;
+		ccc=cc;
 	}
-
-	/**
-	 * Setter of period
-	 */
-	public void setPeriod(long period) { 
-		 this.period = period; 
-	}
-
-	/**
-	 * 
-	 * @param t 
-	 */
-	public void active(long t) { 
-		// TODO Auto-generated method
-		java.util.Timer timer = new java.util.Timer();
-		timer.schedule(new java.util.TimerTask() {
-		    @Override
-		    public void run() {
-		       iEvent.trigger();
-		    }
-		}, t);
-	 }
-
-	/**
-	 * Getter of iEvent
-	 */
-	public IEvent getIEvent() {
-	 	 return iEvent; 
-	}
-
-	/**
-	 * Setter of iEvent
-	 */
-	public void setIEvent(IEvent iEvent) { 
-		 this.iEvent = iEvent; 
-	}
-
+	
+	public void active(long time)
+	{
+		System.out.println("Call Active "+ccc+", time : "+time);
+		if((time-lastTrigger)>timeRepetition)
+		{
+			event.trigger();
+			System.out.println("Event");
+			lastTrigger=time;
+			return;
+		}
+	} 
 }

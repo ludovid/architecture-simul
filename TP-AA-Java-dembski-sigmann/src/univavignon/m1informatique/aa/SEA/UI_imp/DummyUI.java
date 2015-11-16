@@ -32,7 +32,7 @@ public class DummyUI implements IFlowCommand {
 	 } 
 	
 	public static void main(String[]args) {
-		
+		System.out.println("owo");
 	}
 
 }

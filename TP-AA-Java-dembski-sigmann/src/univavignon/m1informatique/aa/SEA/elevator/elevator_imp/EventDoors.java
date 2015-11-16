@@ -1,8 +1,8 @@
 package univavignon.m1informatique.aa.SEA.elevator.elevator_imp;
 
-import univavignon.m1informatique.aa.SEA.sequencer.sequencer_int.IEvent;
+import univavignon.m1informatique.aa.SEA.sequencer.sequencer_int.Event;
 
-public class EventDoors implements IEvent {
+public class EventDoors implements Event {
 
 	/**
 	 * 

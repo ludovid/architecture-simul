@@ -5,7 +5,7 @@ import univavignon.m1informatique.aa.SEA.elevator.elevator_int.IElevatorCommand;
 import univavignon.m1informatique.aa.SEA.elevator.elevator_int.ElevatorCommandFactory;
 
 public class DummyControlSystem {
-
+	System.out.println();
 	/**
 	 * 
 	 */

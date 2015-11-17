@@ -2,13 +2,16 @@ package univavignon.m1informatique.aa.SEA.elevator.elevator_int;
 
 import java.io.File;
 
-public interface ElevatorFactory {
+public class ElevatorFactory {
 
 	/**
 	 * 
 	 * @param setting 
 	 * @return 
 	 */
-	public boolean BuildElevator(File setting); 
+	public static boolean BuildElevator(File setting) {
+		return false;
+		
+	}
 
-}
+};

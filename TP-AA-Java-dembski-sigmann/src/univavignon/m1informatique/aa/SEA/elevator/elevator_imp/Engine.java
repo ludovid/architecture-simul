@@ -4,17 +4,6 @@ import univavignon.m1informatique.aa.SEA.commontype.Direction;
 
 public class Engine {
 
-	/**
-	 * 
-	 */
-	final double constSpeed = 1.0; // vitesse du moteur constante en m/s
-	/**
-	 * 
-	 */
-	final double constSpeedTransient = 0.2; // vitesse de transition du moteur constante en m/s
-	/**
-	 * 
-	 */
 	public double speed;
 	/**
 	 * 
@@ -64,7 +53,7 @@ public class Engine {
 	 * 
 	 * @param direction 
 	 */
-	public void on(Direction direction) { 
+	public void on(Direction direction, double constSpeed) { 
 		this.engineOn = true;
 		this.direction = direction;
 		this.speed = constSpeed;
@@ -81,8 +70,8 @@ public class Engine {
 	 * 
 	 * @param speed 
 	 */
-	public void changeSpeed(double speed) { 
-		this.speed = speed;
+	public void changeSpeed(double constSpeed) { 
+		this.speed = constSpeed;
 	 } 
 
 }

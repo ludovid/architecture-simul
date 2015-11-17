@@ -88,17 +88,26 @@ public class Elevator extends ElevatorNotifier implements IElevatorCommand {
 		this.state = State.Pause;
 	 }
 	/**
+	 * @throws InterruptedException 
 	 * 
 	 */
-	public void closeDoor() { 
-		this.state = State.Move;
+	public void closeDoor() throws InterruptedException { 
+		wait(openDoorWait);
 	 }
 	/**
 	 * 
 	 * @param direction 
 	 */
 	public void move(Direction direction) { 
-		
+		this.direction = direction;
+		this.state = State.Move;
+	 }
+	/**
+	 * 
+	 * @param direction 
+	 */
+	public void moveTransient() { 
+		this.state = State.Transient;
 	 }
 	/**
 	 * 

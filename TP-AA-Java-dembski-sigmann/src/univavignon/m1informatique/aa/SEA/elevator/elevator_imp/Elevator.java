@@ -73,26 +73,19 @@ public class Elevator extends ElevatorNotifier implements IElevatorCommand {
 		 this.openDoorWait = openDoorWait; 
 	}
 	/**
-	 * 
-	 * @param level 
-	 */
-	public void stopAtNextLevel(int level) { 
-		// TODO Auto-generated method
-	 }
-	/**
 	 * @throws InterruptedException 
 	 * 
 	 */
 	public void openDoor() throws InterruptedException { 
+		this.state = State.Transient;
 		wait(openDoorWait);
-		this.state = State.Pause;
 	 }
 	/**
 	 * @throws InterruptedException 
 	 * 
 	 */
 	public void closeDoor() throws InterruptedException { 
-		wait(openDoorWait);
+		this.state = State.Pause;
 	 }
 	/**
 	 * 
@@ -101,13 +94,6 @@ public class Elevator extends ElevatorNotifier implements IElevatorCommand {
 	public void move(Direction direction) { 
 		this.direction = direction;
 		this.state = State.Move;
-	 }
-	/**
-	 * 
-	 * @param direction 
-	 */
-	public void moveTransient() { 
-		this.state = State.Transient;
 	 }
 	/**
 	 * 

@@ -8,10 +8,6 @@ public class ElevatorShaft {
 	/**
 	 * 
 	 */
-	final double constSpeedTransient = 0.2; // vitesse de transition du moteur constante en m/s
-	/**
-	 * 
-	 */
 	public Sensor [][] sensor; // id tableau = id etage / sensor 1 / sensor 2 de l'etage
 	/**
 	 * 

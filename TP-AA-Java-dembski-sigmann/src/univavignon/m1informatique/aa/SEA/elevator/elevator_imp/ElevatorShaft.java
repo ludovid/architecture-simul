@@ -1,7 +1,17 @@
 package univavignon.m1informatique.aa.SEA.elevator.elevator_imp;
 
 public class ElevatorShaft {
-
+	/**
+	 * 
+	 */
+	final double constSpeed = 1.0; // vitesse du moteur constante en m/s
+	/**
+	 * 
+	 */
+	final double constSpeedTransient = 0.2; // vitesse de transition du moteur constante en m/s
+	/**
+	 * 
+	 */
 	/**
 	 * 
 	 */

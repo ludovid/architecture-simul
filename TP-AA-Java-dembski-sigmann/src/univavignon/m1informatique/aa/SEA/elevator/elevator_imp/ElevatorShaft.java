@@ -82,5 +82,10 @@ public class ElevatorShaft {
 	public void setElevatorHeight(double elevatorHeight) { 
 		 this.elevatorHeight = elevatorHeight; 
 	} 
-
+	/**
+	 * 
+	 */
+	public void compute() { 
+		 
+	} 
 }

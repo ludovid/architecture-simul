@@ -81,10 +81,9 @@ public class Elevator extends ElevatorNotifier implements IElevatorCommand {
 		wait(openDoorWait);
 	 }
 	/**
-	 * @throws InterruptedException 
 	 * 
 	 */
-	public void closeDoor() throws InterruptedException { 
+	public void closeDoor() { 
 		this.state = State.Pause;
 	 }
 	/**

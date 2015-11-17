@@ -16,7 +16,7 @@ public class EventDoors implements IEvent {
 	 * 
 	 */
 	public void trigger() { 
-		// TODO Auto-generated method
+		// à supprimer une fois sequenceur modifié
 	 } 
 
 }

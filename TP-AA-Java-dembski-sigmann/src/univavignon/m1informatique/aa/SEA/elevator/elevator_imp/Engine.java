@@ -7,7 +7,19 @@ public class Engine {
 	/**
 	 * 
 	 */
+	final double constSpeed = 1.0; // vitesse du moteur constante en m/s
+	/**
+	 * 
+	 */
+	final double constSpeedTransient = 0.2; // vitesse de transition du moteur constante en m/s
+	/**
+	 * 
+	 */
 	public double speed;
+	/**
+	 * 
+	 */
+	public Direction direction;
 	/**
 	 * 
 	 */
@@ -23,6 +35,18 @@ public class Engine {
 	 */
 	public void setSpeed(double speed) { 
 		 this.speed = speed; 
+	}
+	/**
+	 * Getter of direction
+	 */
+	public Direction getDirection() {
+	 	 return direction; 
+	}
+	/**
+	 * Setter of direction
+	 */
+	public void setDirection(Direction direction) { 
+		 this.direction = direction; 
 	}
 	/**
 	 * Getter of engineOn
@@ -41,20 +65,24 @@ public class Engine {
 	 * @param direction 
 	 */
 	public void on(Direction direction) { 
-		// TODO Auto-generated method
+		this.engineOn = true;
+		this.direction = direction;
+		this.speed = constSpeed;
 	 }
 	/**
 	 * 
 	 */
 	public void off() { 
-		// TODO Auto-generated method
+		this.engineOn = false;
+		this.direction = Direction.None;
+		this.speed = 0;
 	 }
 	/**
 	 * 
 	 * @param speed 
 	 */
 	public void changeSpeed(double speed) { 
-		// TODO Auto-generated method
+		this.speed = speed;
 	 } 
 
 }

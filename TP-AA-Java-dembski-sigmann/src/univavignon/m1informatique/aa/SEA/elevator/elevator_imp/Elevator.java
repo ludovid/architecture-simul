@@ -5,6 +5,7 @@ import univavignon.m1informatique.aa.SEA.elevator.elevator_int.IElevatorCommand;
 import univavignon.m1informatique.aa.SEA.commontype.State;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
 
+
 public class Elevator extends ElevatorNotifier implements IElevatorCommand {
 
 	/**
@@ -73,36 +74,31 @@ public class Elevator extends ElevatorNotifier implements IElevatorCommand {
 	}
 	/**
 	 * 
-	 * @param speed 
-	 */
-	public void move(double speed) { 
-		// TODO Auto-generated method
-	 }
-	/**
-	 * 
 	 * @param level 
 	 */
 	public void stopAtNextLevel(int level) { 
 		// TODO Auto-generated method
 	 }
 	/**
+	 * @throws InterruptedException 
 	 * 
 	 */
-	public void openDoor() { 
-		// TODO Auto-generated method
+	public void openDoor() throws InterruptedException { 
+		wait(openDoorWait);
+		this.state = State.Pause;
 	 }
 	/**
 	 * 
 	 */
 	public void closeDoor() { 
-		// TODO Auto-generated method
+		this.state = State.Move;
 	 }
 	/**
 	 * 
 	 * @param direction 
 	 */
 	public void move(Direction direction) { 
-		// TODO Auto-generated method
+		
 	 }
 	/**
 	 * 

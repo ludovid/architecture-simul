@@ -1,11 +1,7 @@
 package univavignon.m1informatique.aa.SEA.sequencer.sequencer_int;
 
-import univavignon.m1informatique.aa.SEA.sequencer.sequencer_imp.DummySequencer;
-
 public class Sequenceur
 {
-	public DummySequencer dummySequencer;
-	
 	//Singleton
 	private static Sequenceur s = null;
 	private Sequenceur(long Extention, long Contraction, long Origine){pe = new ProcessExecutor(Extention, Contraction, Origine);}
@@ -49,18 +45,5 @@ public class Sequenceur
 		 this.pe = pe; 
 	}
 	
-	/**
-	 * Getter of dummySequencer
-	 */
-	public DummySequencer getDummySequencer() {
-	 	 return dummySequencer; 
-	}
-
-	/**
-	 * Setter of dummySequencer
-	 */
-	public void setDummySequencer(DummySequencer dummySequencer) { 
-		 this.dummySequencer = dummySequencer; 
-	}
 
 }

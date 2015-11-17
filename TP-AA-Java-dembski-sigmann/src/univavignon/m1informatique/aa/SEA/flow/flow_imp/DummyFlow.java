@@ -10,6 +10,7 @@ public class DummyFlow implements IUser {
 	 */
 	public void notifyCall(long t) { 
 		// TODO Auto-generated method
+		System.out.println("notify call "+t);
 	 }
 
 	/**
@@ -18,6 +19,7 @@ public class DummyFlow implements IUser {
 	 */
 	public void notifyMove(long t) { 
 		// TODO Auto-generated method
+		System.out.println("notify move "+t);
 	 } 
 
 }

@@ -30,6 +30,7 @@ public class DummyElevatorUI implements IElevatorUIRequest {
 	 */
 	public void notify(long t) { 
 		// TODO Auto-generated method
+		System.out.println("notify dummy_elevator_ui from iuser "+iUser+" "+t);
 	 } 
 
 }

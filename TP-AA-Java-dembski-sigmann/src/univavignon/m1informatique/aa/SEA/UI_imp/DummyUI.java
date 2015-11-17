@@ -2,6 +2,7 @@ package univavignon.m1informatique.aa.SEA.UI_imp;
 
 import univavignon.m1informatique.aa.SEA.flow.flow_int.IFlowCommand;
 import univavignon.m1informatique.aa.SEA.flow.flow_int.FlowFactory;
+import univavignon.m1informatique.aa.SEA.sequencer.sequencer_imp.DummySequencer;
 
 public class DummyUI implements IFlowCommand {
 
@@ -29,10 +30,13 @@ public class DummyUI implements IFlowCommand {
 	 */
 	public void start() { 
 		// TODO Auto-generated method
+		
 	 } 
 	
 	public static void main(String[]args) {
-		System.out.println("owo");
+		
+		DummySequencer ds = new DummySequencer(0,0,-1);
+		System.out.println(ds);
 	}
 
 }

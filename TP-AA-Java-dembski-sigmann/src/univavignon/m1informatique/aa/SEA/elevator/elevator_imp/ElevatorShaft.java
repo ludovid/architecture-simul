@@ -12,10 +12,7 @@ public class ElevatorShaft {
 	/**
 	 * 
 	 */
-	/**
-	 * 	
-	 */
-	public Sensor sensor;
+	public Sensor [][] sensor; // id tableau = id etage / sensor 1 / sensor 2 de l'etage
 	/**
 	 * 
 	 */
@@ -35,13 +32,13 @@ public class ElevatorShaft {
 	/**
 	 * Getter of sensor
 	 */
-	public Sensor getSensor() {
+	public Sensor[][] getSensor() {
 	 	 return sensor; 
 	}
 	/**
 	 * Setter of sensor
 	 */
-	public void setSensor(Sensor sensor) { 
+	public void setSensor(Sensor [][] sensor) { 
 		 this.sensor = sensor; 
 	}
 	/**

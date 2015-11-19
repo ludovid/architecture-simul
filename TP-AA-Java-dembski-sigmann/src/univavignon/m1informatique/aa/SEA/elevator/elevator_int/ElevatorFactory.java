@@ -12,7 +12,7 @@ public class ElevatorFactory {
 	 * @return 
 	 */
 	public static boolean BuildElevator(File setting) {
-		ElevatorShaft ES = new ElevatorShaft(2, 5, 3, 10); // mettre les param du fichier pour construire les objets de shaft
+		ElevatorShaft ES = new ElevatorShaft(2, 5, 3, 10, 1); // mettre les param du fichier pour construire les objets de shaft
 		return false;
 		
 	}

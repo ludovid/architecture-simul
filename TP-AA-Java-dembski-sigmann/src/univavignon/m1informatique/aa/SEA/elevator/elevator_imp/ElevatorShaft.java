@@ -4,7 +4,7 @@ public class ElevatorShaft {
 	/**
 	 * 
 	 */
-	final double constSpeed = 1.0; // vitesse du moteur constante en m/s
+	public double constSpeed; // vitesse du moteur constante en m/s
 	/**
 	 * 
 	 */
@@ -12,11 +12,11 @@ public class ElevatorShaft {
 	/**
 	 * 
 	 */
-	public Elevator elevator;
+	public Elevator elevator; // cabine
 	/**
 	 * 
 	 */
-	public Engine engine;
+	public Engine engine; // moteur
 	/**
 	 * 
 	 */
@@ -36,7 +36,7 @@ public class ElevatorShaft {
 	/**
 	 * Constructeur
 	 */
-	public ElevatorShaft(double eh, int nbf, double dbf, long odw) {
+	public ElevatorShaft(double eh, int nbf, double dbf, long odw, double speed) {
 		  int nbs = nbf * 2; 
 	 	  this.elevator = new Elevator(odw);
 	 	  this.engine = new Engine();
@@ -52,6 +52,7 @@ public class ElevatorShaft {
 	 	  this.elevatorHeight = eh;
 	 	  this.distanceBetweenFloors = dbf;
 	 	  this.nbFloors = nbf;
+	 	  this.constSpeed = speed;
 	}
 	/**
 	 * Getter of sensor
@@ -136,6 +137,18 @@ public class ElevatorShaft {
 	 */
 	public void setNbFloors(int nbFloors) { 
 		 this.nbFloors = nbFloors; 
+	} 
+	/**
+	 * Getter of constSpeed
+	 */
+	public double getConstSpeed() {
+	 	 return constSpeed; 
+	}
+	/**
+	 * Setter of constSpeed
+	 */
+	public void setConstSpeed(double constSpeed) { 
+		 this.constSpeed = constSpeed; 
 	} 
 	/**
 	 * 

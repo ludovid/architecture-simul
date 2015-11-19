@@ -20,15 +20,24 @@ public class ElevatorShaft {
 	/**
 	 * 
 	 */
-	public double shaftHeight;
+	public double shaftHeight; // hauteur totale
 	/**
 	 * 
 	 */
-	public double elevatorHeight;
+	public double elevatorHeight; // hauteur de la cabine
+	/**
+	 * 
+	 */
+	public double distanceBetweenFloors; // distance entre 2 étages sans la taille de la cabine
+	/**
+	 * 
+	 */
+	public int nbFloors; // nombre d'étage
 	/**
 	 * Constructeur
 	 */
-	public ElevatorShaft(double sh, double eh, int nbs, long odw) {
+	public ElevatorShaft(double eh, int nbf, double dbf, long odw) {
+		  int nbs = nbf * 2; 
 	 	  this.elevator = new Elevator(odw);
 	 	  this.engine = new Engine();
 	 	  this.sensor = new Sensor[nbs][2];
@@ -39,8 +48,10 @@ public class ElevatorShaft {
 			this.sensor[i][1] = new Sensor(k);
 			k++;
 	 	  }
-	 	  this.shaftHeight = sh;
+	 	  this.shaftHeight = nbf * (dbf + eh);
 	 	  this.elevatorHeight = eh;
+	 	  this.distanceBetweenFloors = dbf;
+	 	  this.nbFloors = nbf;
 	}
 	/**
 	 * Getter of sensor
@@ -101,6 +112,30 @@ public class ElevatorShaft {
 	 */
 	public void setElevatorHeight(double elevatorHeight) { 
 		 this.elevatorHeight = elevatorHeight; 
+	} 
+	/**
+	 * Getter of distanceBetweenFloors
+	 */
+	public double getDistanceBetweenFloors() {
+	 	 return distanceBetweenFloors; 
+	}
+	/**
+	 * Setter of distanceBetweenFloors
+	 */
+	public void setDistanceBetweenFloors(double distanceBetweenFloors) { 
+		 this.distanceBetweenFloors = distanceBetweenFloors; 
+	} 
+	/**
+	 * Getter of nbFloors
+	 */
+	public double getNbFloors() {
+	 	 return nbFloors; 
+	}
+	/**
+	 * Setter of nbFloors
+	 */
+	public void setNbFloors(int nbFloors) { 
+		 this.nbFloors = nbFloors; 
 	} 
 	/**
 	 * 

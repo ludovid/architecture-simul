@@ -26,6 +26,23 @@ public class ElevatorShaft {
 	 */
 	public double elevatorHeight;
 	/**
+	 * Constructeur
+	 */
+	public ElevatorShaft(double sh, double eh, int nbs, long odw) {
+	 	  this.elevator = new Elevator(odw);
+	 	  this.engine = new Engine();
+	 	  this.sensor = new Sensor[nbs][2];
+	 	  int k = 0;
+	 	  for(int i = 0; i < nbs; i++) {
+			this.sensor[i][0] = new Sensor(k);
+			k++;
+			this.sensor[i][1] = new Sensor(k);
+			k++;
+	 	  }
+	 	  this.shaftHeight = sh;
+	 	  this.elevatorHeight = eh;
+	}
+	/**
 	 * Getter of sensor
 	 */
 	public Sensor[][] getSensor() {

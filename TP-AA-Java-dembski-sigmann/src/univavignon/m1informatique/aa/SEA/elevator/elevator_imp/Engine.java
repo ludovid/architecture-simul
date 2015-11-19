@@ -14,6 +14,14 @@ public class Engine {
 	 */
 	public boolean engineOn;
 	/**
+	 * Constructeur
+	 */
+	public Engine() {
+	 	  this.speed = 0;
+	 	  this.direction = Direction.None;
+	 	  this.engineOn = false;
+	}
+	/**
 	 * Getter of speed
 	 */
 	public double getSpeed() {

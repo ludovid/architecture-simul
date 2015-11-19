@@ -7,7 +7,7 @@ public class ElevatorCommandFactory {
 	 * @return 
 	 */
 	public static IElevatorCommand getElevatorCommand() { 
-		// TODO Auto-generated method
+
 		return null;
 	 } 
 

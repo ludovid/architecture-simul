@@ -11,12 +11,4 @@ public class EventMove implements IEvent {
 	public void trigger(long t) { 
 		// TODO Auto-generated method
 	 }
-
-	/**
-	 * 
-	 */
-	public void trigger() { 
-		// à supprimer une fois sequenceur modifié
-	 } 
-
 }

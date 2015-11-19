@@ -11,6 +11,13 @@ public class Sensor {
 	 */
 	public int id;
 	/**
+	 * Constructeur
+	 */
+	public Sensor(int id) {
+	 	  this.detection = false;
+	 	  this.id = id;
+	}
+	/**
 	 * Getter of detection
 	 */
 	public boolean getDetection() {

@@ -10,7 +10,7 @@ public class IElevatorNotifier {
 	 */
 	public void notifyState(State state) { 
 		// TODO Auto-generated method
-	 }
+	}
 
 	/**
 	 * 

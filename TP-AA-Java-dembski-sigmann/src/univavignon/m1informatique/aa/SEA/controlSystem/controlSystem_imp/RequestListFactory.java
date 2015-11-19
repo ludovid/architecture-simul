@@ -1,31 +1,33 @@
 package univavignon.m1informatique.aa.SEA.controlSystem.controlSystem_imp;
 
+import java.util.ArrayList;
+
 public class RequestListFactory {
 
 	/**
 	 * 
 	 */
-	public CSRequest currentList;
+	public ArrayList<CSRequest> currentList;
 	/**
 	 * 
 	 */
-	public CSRequest nextList;
+	public ArrayList<CSRequest> nextList;
 	/**
 	 * Getter of currentList
 	 */
-	public CSRequest getCurrentList() {
+	public ArrayList getCurrentList() {
 	 	 return currentList; 
 	}
 	/**
 	 * Setter of currentList
 	 */
-	public void setCurrentList(CSRequest currentList) { 
+	public void setCurrentList(ArrayList<CSRequest> currentList) { 
 		 this.currentList = currentList; 
 	}
 	/**
 	 * Getter of nextList
 	 */
-	public CSRequest getNextList() {
+	public ArrayList<CSRequest> getNextList() {
 	 	 return nextList; 
 	}
 	/**
@@ -37,8 +39,9 @@ public class RequestListFactory {
 	/**
 	 * 
 	 */
-	public void add() { 
+	public void add(CSRequest csr) { 
 		// TODO Auto-generated method
+		currentList.add(csr);
 	 }
 	/**
 	 * 

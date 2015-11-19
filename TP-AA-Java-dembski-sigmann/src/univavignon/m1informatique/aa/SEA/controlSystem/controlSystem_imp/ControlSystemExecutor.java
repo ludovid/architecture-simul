@@ -1,14 +1,17 @@
 package univavignon.m1informatique.aa.SEA.controlSystem.controlSystem_imp;
 
-import univavignon.m1informatique.aa.SEA.elevatorUI.elevatorUI_int.IElevatorUIRequest;
 import univavignon.m1informatique.aa.SEA.elevator.elevator_int.ElevatorCommandFactory;
+import univavignon.m1informatique.aa.SEA.elevatorUI.elevatorUI_int.IElevatorUIRequest;
 
 public class ControlSystemExecutor {
 
+	public ControlSystemExecutor() {
+		
+	}
 	/**
 	 * 
 	 */
-	public IElevatorUIRequest iElevatorUIRequest;
+	public IElevatorUIRequest IElevatorUIRequest;
 	/**
 	 * 
 	 */
@@ -21,13 +24,13 @@ public class ControlSystemExecutor {
 	 * Getter of iElevatorUIRequest
 	 */
 	public IElevatorUIRequest getIElevatorUIRequest() {
-	 	 return iElevatorUIRequest; 
+	 	 return IElevatorUIRequest; 
 	}
 	/**
 	 * Setter of iElevatorUIRequest
 	 */
-	public void setIElevatorUIRequest(IElevatorUIRequest iElevatorUIRequest) { 
-		 this.iElevatorUIRequest = iElevatorUIRequest; 
+	public void setIElevatorUIRequest(IElevatorUIRequest IElevatorUIRequest) { 
+		 this.IElevatorUIRequest = IElevatorUIRequest; 
 	}
 	/**
 	 * Getter of elevatorCommandFactory

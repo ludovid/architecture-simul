@@ -1,11 +1,10 @@
 package univavignon.m1informatique.aa.SEA.controlSystem.controlSystem_imp;
 
-import univavignon.m1informatique.aa.SEA.elevatorUI.elevatorUI_int.IElevatorUIRequest;
-import univavignon.m1informatique.aa.SEA.elevator.elevator_int.IElevatorCommand;
 import univavignon.m1informatique.aa.SEA.elevator.elevator_int.ElevatorCommandFactory;
+import univavignon.m1informatique.aa.SEA.elevator.elevator_int.IElevatorCommand;
+import univavignon.m1informatique.aa.SEA.elevatorUI.elevatorUI_int.IElevatorUIRequest;
 
 public class DummyControlSystem {
-	System.out.println();
 	/**
 	 * 
 	 */

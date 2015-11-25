@@ -1,6 +1,9 @@
 package univavignon.m1informatique.aa.SEA.elevator.impl;
 
-public class ElevatorShaft {
+import univavignon.m1informatique.aa.SEA.elevator.api.ElevatorCommandFactory;
+
+
+public class ElevatorShaft extends ElevatorCommandFactory{
 	/**
 	 * 
 	 */

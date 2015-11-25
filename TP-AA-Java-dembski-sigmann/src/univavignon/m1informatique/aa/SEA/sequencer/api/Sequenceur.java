@@ -28,8 +28,8 @@ public class Sequenceur
 	public void start()
 	{
 		pe.initialise();
-		pe.sequance();
-	} 
+		pe.sequence();
+	}
 	
 	/**
 	 * Getter of processExecutor

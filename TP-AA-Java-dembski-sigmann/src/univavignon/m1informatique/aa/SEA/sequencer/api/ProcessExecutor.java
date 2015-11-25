@@ -31,12 +31,12 @@ public class ProcessExecutor
 		Process tmp;
 		for(int i=0;i<listProcess.size();i++)
 		{
-			tmp = (Process)listProcess.get(i);
+			tmp = listProcess.get(i);
 			tmp.active(simuElev.Time());
 		}
 	}
 
-	public void sequance()
+	public void sequence()
 	{ 
 		if(isInit=false) initialise();
 		Process tmp;
@@ -45,7 +45,7 @@ public class ProcessExecutor
 			for(int i=0;i<listProcess.size();i++)
 			{
 				timer.Wait(timeMini);
-				tmp = (Process)listProcess.get(i);
+				tmp = listProcess.get(i);
 				tmp.active(simuElev.Time());
 			}
 		}

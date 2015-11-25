@@ -50,14 +50,8 @@ public class SimulationUI implements IFlowCommand {
 		final IControlSystem cs = ControlSystemFactory.createControlSystem(command);
 		final IElevatorUI elevatorUI = ElevatorUIFactory.createElevatorUI(cs);
 		final IFlow flow = FlowFactory.buildFlow(flowFile, elevatorUI);	
-		System.out.println(flow);
 		
-		/*
-		Sequenceur seq = new Sequenceur (0, 0, 0);
-		seq.addEvent(callEvent, 1000);
-		seq.addEvent(moveEvent, 1000);
-		seq.start();
-		*/
+	
 	}
 
 }

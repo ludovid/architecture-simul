@@ -14,14 +14,28 @@ public class SimulationTimeConverteur
 	
 	public long simulationTimeToRealTime(long simulationTime)
 	{
-		if(se.contraction==0)	return simulationTime;
-		return (se.contraction>0)?	simulationTime/se.contraction:	simulationTime*(-se.contraction);
+		if(se.getContraction()==0)	return simulationTime;
+		if (se.getContraction()>0)
+		{
+			return simulationTime/se.getContraction();
+		}
+		else
+		{
+			return simulationTime*(-se.getContraction());
+		}
 	}
 
 	public long realTimeToSimulationTime(long realTime)
 	{
-		if(se.contraction==0)	return realTime;
-		return (se.contraction>0)?	realTime*se.contraction:	realTime/(-se.contraction);
+		if(se.getContraction()==0)	return realTime;
+		if (se.getContraction()>0)
+		{
+			return realTime*se.getContraction();
+		}
+		else
+		{
+			return realTime/(-se.getContraction());
+		}
 	} 
 
 }

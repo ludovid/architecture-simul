@@ -3,14 +3,22 @@ package univavignon.m1informatique.aa.SEA.sequencer.api;
 public class SimulationElevator
 {
 	// Singleton
-	public long origine, contraction, timeOrigine;
+	private long origine, contraction, timeOrigine;
 	private SimulationTimeConverteur convertTime;
 	private static SimulationElevator s = null;
 	
+	public long getContraction() {
+		return contraction;
+	}
+
+	public void setContraction(long contraction) {
+		this.contraction = contraction;
+	}
+
 	public SimulationElevator(long contraction, long origine)
 	{
 		this.origine = (origine==-1)?	System.currentTimeMillis():	origine;
-		this.contraction = contraction;
+		this.setContraction(contraction);
 		this.timeOrigine = -1;
 		this.convertTime = SimulationTimeConverteur.create(this);
 	}

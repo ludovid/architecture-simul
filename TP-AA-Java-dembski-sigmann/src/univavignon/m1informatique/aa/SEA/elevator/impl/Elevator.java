@@ -82,32 +82,16 @@ public class Elevator implements IElevatorNotifier, IElevatorCommand {
 	}
 	/**
 	 * 
-	 * @param speed 
-	 */
-	public void move(double speed) { 
-		// TODO Auto-generated method
-		System.out.println("elevator move with speed at "+speed);
-	 }
-	/**
-	 * 
-	 * @param level 
-	 */
-	public void stopAtNextLevel(int level) { 
-		// TODO Auto-generated method
-		System.out.println("elevator will stop at lvl "+level);
-	 }
-	/**
-	 * 
 	 */
 	public void openDoor() { 
-		// TODO Auto-generated method
+		this.state = State.Transient;
 		System.out.println("elevator open door");
 	 }
 	/**
 	 * 
 	 */
 	public void closeDoor() { 
-		// TODO Auto-generated method
+		this.state = State.Pause;
 		System.out.println("elevator close door");
 	 }
 	/**
@@ -115,7 +99,8 @@ public class Elevator implements IElevatorNotifier, IElevatorCommand {
 	 * @param direction 
 	 */
 	public void move(Direction direction) { 
-		// TODO Auto-generated method
+		this.direction = direction;
+		this.state = State.Move;
 		System.out.println("elevator move "+direction);
 	 }
 	

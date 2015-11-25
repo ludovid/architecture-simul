@@ -12,8 +12,7 @@ public interface IElevatorCommand {
 
 	/**
 	 * 
-	 * @param level 
 	 */
-	public void stopAtLevel(int level); 
+	public void stopAtNextLevel(); 
 
 }

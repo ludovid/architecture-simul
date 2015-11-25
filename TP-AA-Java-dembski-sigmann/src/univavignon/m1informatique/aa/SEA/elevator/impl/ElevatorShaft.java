@@ -1,9 +1,25 @@
 package univavignon.m1informatique.aa.SEA.elevator.impl;
 
-import univavignon.m1informatique.aa.SEA.elevator.api.ElevatorCommandFactory;
+
+import univavignon.m1informatique.aa.SEA.commontype.Direction;
+import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
+import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
 
 
-public class ElevatorShaft extends ElevatorCommandFactory{
+public class ElevatorShaft implements Event, IElevatorCommand{
+	
+	
+	public long getLastCallTrigger() {
+		return lastCallTrigger;
+	}
+	public void setLastCallTrigger(long lastCallTrigger) {
+		this.lastCallTrigger = lastCallTrigger;
+	}
+
+	public long lastCallTrigger;
+	
+	double distanceFromBottom;
+	
 	/**
 	 * 
 	 */
@@ -42,7 +58,7 @@ public class ElevatorShaft extends ElevatorCommandFactory{
 	public ElevatorShaft(double eh, int nbf, double dbf, long odw, double speed) {
 		  int nbs = nbf * 2; 
 	 	  this.elevator = new Elevator(odw);
-	 	  this.engine = new Engine();
+	 	  this.engine = new Engine(speed);
 	 	  this.sensor = new Sensor[nbs][2];
 	 	  int k = 0;
 	 	  for(int i = 0; i < nbs; i++) {
@@ -55,6 +71,7 @@ public class ElevatorShaft extends ElevatorCommandFactory{
 	 	  this.elevatorHeight = eh;
 	 	  this.distanceBetweenFloors = dbf;
 	 	  this.nbFloors = nbf;
+	 	  this.distanceFromBottom = 0.0;
 	 	  this.constSpeed = speed;
 	}
 	/**
@@ -156,7 +173,51 @@ public class ElevatorShaft extends ElevatorCommandFactory{
 	/**
 	 * 
 	 */
-	public void compute() { 
-		 
-	} 
+	@Override
+	public void trigger(long t) {
+		if(this.lastCallTrigger == 0)
+			this.lastCallTrigger = t;
+		else
+		{
+			long tmpT = t - this.lastCallTrigger;
+			this.distanceFromBottom += tmpT * this.constSpeed;
+			
+			this.isAtLevel(distanceFromBottom/distanceBetweenFloors);
+		}
+	}
+	
+	public void isAtLevel(double pos) { 
+		
+		if(this.elevator.direction == Direction.Down)
+		{
+			this.elevator.position = (int) (pos - this.elevatorHeight);
+			if(this.elevator.position)
+				this.sensor[this.elevator.position][1].setDetection(true);
+		}
+		else if(this.elevator.direction == Direction.Up)
+		{
+			this.elevator.position = (int) (pos + this.elevatorHeight);
+			if(this.elevator.position < )
+				this.sensor[this.elevator.position][0].setDetection(true);
+		}
+		// croiser capteur à faire
+		
+		this.elevator.IEN.notifyLevel(elevator.position);
+		System.out.println("elevator crossed level "+elevator.position);
+	 }
+	
+	/**
+	 * 
+	 */
+	public void stopAtNextLevel() { 
+		this.engine.off();
+		
+		System.out.println("elevator stop at level final");
+	 }
+	
+	@Override
+	public void move(Direction direction) {
+		// TODO Auto-generated method stub
+		
+	}
 }

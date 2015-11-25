@@ -5,7 +5,8 @@ import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorNotifier;
 import univavignon.m1informatique.aa.SEA.commontype.State;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
 
-public class Elevator implements IElevatorNotifier, IElevatorCommand {
+
+public class Elevator implements IElevatorCommand {
 
 	/**
 	 * 
@@ -23,6 +24,11 @@ public class Elevator implements IElevatorNotifier, IElevatorCommand {
 	 * 
 	 */
 	public long openDoorWait;
+	/**
+	 * 
+	 */
+	public IElevatorNotifier IEN;
+	
 	/**
 	 * Constructeur
 	 */
@@ -80,6 +86,14 @@ public class Elevator implements IElevatorNotifier, IElevatorCommand {
 	public void setOpenDoorWait(long openDoorWait) { 
 		 this.openDoorWait = openDoorWait; 
 	}
+	
+	public IElevatorNotifier getIEN() {
+		return IEN;
+	}
+	
+	public void setIEN(IElevatorNotifier iEN) {
+		this.IEN = iEN;
+	}
 	/**
 	 * 
 	 */
@@ -92,6 +106,7 @@ public class Elevator implements IElevatorNotifier, IElevatorCommand {
 	 */
 	public void closeDoor() { 
 		this.state = State.Pause;
+		
 		System.out.println("elevator close door");
 	 }
 	/**
@@ -101,30 +116,13 @@ public class Elevator implements IElevatorNotifier, IElevatorCommand {
 	public void move(Direction direction) { 
 		this.direction = direction;
 		this.state = State.Move;
+		this.IEN.notifyState(this.state);
 		System.out.println("elevator move "+direction);
 	 }
 	
-	/**
-	 * 
-	 * @param level 
-	 */
-	public void stopAtLevel(int level) { 
-		// TODO Auto-generated method
-		System.out.println("elevator stop at level "+level);
-	 }
-	
 	@Override
-	public void notifyLevel(int level) {
+	public void stopAtNextLevel() {
 		// TODO Auto-generated method stub
-		System.out.println("elevator notify level "+level);
 		
 	}
-	
-	@Override
-	public void notifyState(State state) {
-		// TODO Auto-generated method stub
-		System.out.println("elevator notify state "+state);
-		
-	} 
-
 }

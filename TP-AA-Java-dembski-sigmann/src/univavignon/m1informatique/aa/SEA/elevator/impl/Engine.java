@@ -4,6 +4,8 @@ import univavignon.m1informatique.aa.SEA.commontype.Direction;
 
 public class Engine {
 
+	public double constSpeed;
+	
 	public double speed;
 	/**
 	 * 
@@ -16,10 +18,19 @@ public class Engine {
 	/**
 	 * Constructeur
 	 */
-	public Engine() {
+	public Engine(double speed) {
 	 	  this.speed = 0;
 	 	  this.direction = Direction.None;
 	 	  this.engineOn = false;
+	 	  this.constSpeed = speed;
+	}
+	
+	public double getConstSpeed() {
+		return constSpeed;
+	}
+	
+	public void setConstSpeed(double constSpeed) {
+		this.constSpeed = constSpeed;
 	}
 	/**
 	 * Getter of speed
@@ -62,10 +73,10 @@ public class Engine {
 	 * @param direction 
 	 * @param constSpeed
 	 */
-	public void on(Direction direction, double constSpeed) { 
+	public void on(Direction direction) { 
 		this.engineOn = true;
 		this.direction = direction;
-		changeSpeed(constSpeed);
+		changeSpeed(this.constSpeed);
 	 }
 	/**
 	 * 

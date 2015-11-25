@@ -1,6 +1,6 @@
 package univavignon.m1informatique.aa.SEA.elevator.api;
 
-import java.io.File;
+import java.io.*;
 
 public interface ElevatorFactory {
 

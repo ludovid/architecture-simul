@@ -11,12 +11,4 @@ public class EventMove implements Event {
 	public void trigger(long t) { 
 		// TODO Auto-generated method
 	 }
-
-	/**
-	 * 
-	 */
-	public void trigger() { 
-		// TODO Auto-generated method
-	 } 
-
 }

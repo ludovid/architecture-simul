@@ -24,6 +24,15 @@ public class Elevator implements IElevatorNotifier, IElevatorCommand {
 	 */
 	public long openDoorWait;
 	/**
+	 * Constructeur
+	 */
+	public Elevator(long odw) {
+	 	 this.state = State.Pause;
+	 	 this.position = 0;
+	 	 this.direction = Direction.None;
+	 	 this.openDoorWait = odw;
+	}
+	/**
 	 * Getter of state
 	 */
 	public State getState() {

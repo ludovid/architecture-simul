@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding="UTF-8" standalone="yes" ?>
+
+<elevator>
+	<speed>2.0</speed>
+	<floorNumber>10</floorNumber>
+	<doorTime>5.0</doorTime>
+	<elevatorHeight>5.0</elevatorHeight>
+	<distanceBetweenFloors>30.0</distanceBetweenFloors>
+</elevator>

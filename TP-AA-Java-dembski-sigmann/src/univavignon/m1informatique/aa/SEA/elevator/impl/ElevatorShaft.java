@@ -201,7 +201,6 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 				this.sensor[this.elevator.position][0].setDetection(true);
 		}
 		// croiser capteur à faire
-		// test git maison
 		
 		this.elevator.IEN.notifyLevel(elevator.position);
 		System.out.println("elevator crossed level "+elevator.position);

@@ -4,7 +4,13 @@ public class Process
 {
 	private Event event;
 	private long timeRepetition, lastTrigger;
+	/**
+	 * cc the number of Process instantiations
+	 */
 	static int cc = 0;
+	/**
+	 * ccc the ID of this Process object
+	 */
 	int ccc;	
 	
 	public Process(Event e, long t)

@@ -7,9 +7,14 @@ public class DummySequencer {
 
 	private Sequenceur seq;
 	
-	public DummySequencer (long long1, long long2, long long3)
+	public DummySequencer ()
 	{
-		seq = Sequenceur.create(long1,long2,long3);
+		seq = Sequenceur.create();
+	}
+	
+	public DummySequencer (long long2, long long3)
+	{
+		seq = Sequenceur.create(long2,long3);
 	}
 	
 	public void start () 

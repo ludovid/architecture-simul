@@ -6,15 +6,24 @@ public class ProcessExecutor
 {
 	private ArrayList<Process> listProcess = new ArrayList<>();
 	private long timeMini;
+	
+	public long getTimeMini() {
+		return timeMini;
+	}
+
+	public void setTimeMini(long timeMini) {
+		this.timeMini = timeMini;
+	}
+
 	private Timer timer;
 	private boolean isInit;
 	private SimulationElevator simuElev;
 	
-	public ProcessExecutor(long Extention, long Contraction, long Origine)
+	public ProcessExecutor(long Contraction, long Origine)
 	{
 		timeMini = -1;
 		isInit = false;
-		simuElev = SimulationElevator.create(Extention, Contraction, Origine);
+		simuElev = SimulationElevator.create(Contraction, Origine);
 		timer = new Timer(simuElev);
 	}
 	
@@ -31,12 +40,12 @@ public class ProcessExecutor
 		Process tmp;
 		for(int i=0;i<listProcess.size();i++)
 		{
-			tmp = (Process)listProcess.get(i);
+			tmp = listProcess.get(i);
 			tmp.active(simuElev.Time());
 		}
 	}
 
-	public void sequance()
+	public void sequence()
 	{ 
 		if(isInit=false) initialise();
 		Process tmp;
@@ -44,8 +53,8 @@ public class ProcessExecutor
 		{
 			for(int i=0;i<listProcess.size();i++)
 			{
+				tmp = listProcess.get(i);
 				timer.Wait(timeMini);
-				tmp = (Process)listProcess.get(i);
 				tmp.active(simuElev.Time());
 			}
 		}

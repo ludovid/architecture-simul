@@ -16,8 +16,8 @@ public final class SequencerFactory {
 	 * @param c
 	 * @return
 	 */
-	public static DummySequencer createSequencer(final long a, final long b, final long c) {
-		return new DummySequencer(a, b, c);
+	public static DummySequencer createSequencer(final long b, final long c) {
+		return new DummySequencer(b, c);
 	}
 
 }

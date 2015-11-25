@@ -10,11 +10,11 @@ public class ProcessExecutor
 	private boolean isInit;
 	private SimulationElevator simuElev;
 	
-	public ProcessExecutor(long Extention, long Contraction, long Origine)
+	public ProcessExecutor(long Contraction, long Origine)
 	{
 		timeMini = -1;
 		isInit = false;
-		simuElev = SimulationElevator.create(Extention, Contraction, Origine);
+		simuElev = SimulationElevator.create(Contraction, Origine);
 		timer = new Timer(simuElev);
 	}
 	

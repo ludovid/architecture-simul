@@ -45,12 +45,12 @@ public class SimulationUI implements IFlowCommand {
 	
 	public static void main(String[]args) {
 		final File flowFile = null; // TODO : Retrieve from arguments.
-		final DummySequencer s = SequencerFactory.createSequencer(0,0,-1);		
+		final DummySequencer s = SequencerFactory.createSequencer(0,-1);		
 		final IElevatorCommand command = null;
 		final IControlSystem cs = ControlSystemFactory.createControlSystem(command);
 		final IElevatorUI elevatorUI = ElevatorUIFactory.createElevatorUI(cs);
 		final IFlow flow = FlowFactory.buildFlow(flowFile, elevatorUI);	
-		
+		System.out.println(flow);
 		
 		/*
 		Sequenceur seq = new Sequenceur (0, 0, 0);

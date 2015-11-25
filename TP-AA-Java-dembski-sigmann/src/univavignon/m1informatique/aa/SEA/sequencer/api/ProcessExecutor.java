@@ -6,6 +6,15 @@ public class ProcessExecutor
 {
 	private ArrayList<Process> listProcess = new ArrayList<>();
 	private long timeMini;
+	
+	public long getTimeMini() {
+		return timeMini;
+	}
+
+	public void setTimeMini(long timeMini) {
+		this.timeMini = timeMini;
+	}
+
 	private Timer timer;
 	private boolean isInit;
 	private SimulationElevator simuElev;
@@ -44,8 +53,8 @@ public class ProcessExecutor
 		{
 			for(int i=0;i<listProcess.size();i++)
 			{
-				timer.Wait(timeMini);
 				tmp = listProcess.get(i);
+				timer.Wait(timeMini);
 				tmp.active(simuElev.Time());
 			}
 		}

@@ -191,13 +191,13 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 		if(this.elevator.direction == Direction.Down)
 		{
 			this.elevator.position = (int) (pos - this.elevatorHeight);
-			if(this.elevator.position)
+			//if(this.elevator.position)
 				this.sensor[this.elevator.position][1].setDetection(true);
 		}
 		else if(this.elevator.direction == Direction.Up)
 		{
 			this.elevator.position = (int) (pos + this.elevatorHeight);
-			if(this.elevator.position < )
+			//if(this.elevator.position < )
 				this.sensor[this.elevator.position][0].setDetection(true);
 		}
 		// croiser capteur à faire

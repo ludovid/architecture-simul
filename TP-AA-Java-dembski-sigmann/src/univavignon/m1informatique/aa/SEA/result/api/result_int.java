@@ -1,10 +1,16 @@
 package univavignon.m1informatique.aa.SEA.result.api;
 
-public class result_int {
+import univavignon.m1informatique.aa.SEA.result.impl.ResultManager;
 
-		//Passer en paramï¿½tre le fichier oï¿½ ce situe le resultat
+public class result_int
+{
+
+		/**
+		 * 
+		 * @param fileReadResult Nom du fichier de résultat pour enssuite lancer les calcules
+		 */
 		public static void calculer(String fileReadResult)
 		{
-			
+			ResultManager.executResult(fileReadResult);
 		}
 }

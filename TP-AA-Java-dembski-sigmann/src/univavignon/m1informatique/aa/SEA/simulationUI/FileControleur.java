@@ -1,13 +1,18 @@
 package univavignon.m1informatique.aa.SEA.simulationUI;
 
-public class FileControleur {
+import java.io.File;
+
+public class FileControleur
+{
 
 	/**
 	 * 
 	 * @param fileName 
 	 */
-	public static void fileExist(String fileName) { 
-		// TODO Auto-generated method
-	 } 
+	public static boolean fileExist(String fileName)
+	{ 
+		File f = new File(fileName); 
+		return f.exists();
+	}
 
 }

@@ -2,15 +2,32 @@ package univavignon.m1informatique.aa.SEA.result.impl;
 
 public class MathOperation
 { 
-	public static long standardDeviation(long[] data)
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public static float standardDeviation(long[] data)
 	{
-		
-		return 0;
+		float res=0, moy = 0;
+        for(int i = 0;i<data.length;i++)
+            res+=data[i]*data[i];
+        for(int i = 0;i<data.length;i++)
+            moy+=data[i];
+        moy=moy/data.length;
+        res-=(moy*moy);
+		return (float)Math.sqrt(res);
 	}
-	
-	public static long avarage(long[] data)
+	/**
+	 * 
+	 * @param data
+	 * @return
+	 */
+	public static float avarage(long[] data)
 	{
-		
-		return 0;
+		float res=0;
+        for(int i = 0;i<data.length;i++)
+            res+=data[i];
+        return res/data.length;
 	}
 }

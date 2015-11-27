@@ -2,56 +2,37 @@ package univavignon.m1informatique.aa.SEA.simulationUI;
 
 import java.io.File;
 
-import univavignon.m1informatique.aa.SEA.controlSystem.api.ControlSystemFactory;
-import univavignon.m1informatique.aa.SEA.controlSystem.api.IControlSystem;
-import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
-import univavignon.m1informatique.aa.SEA.elevatorUI.api.ElevatorUIFactory;
-import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUI;
+import univavignon.m1informatique.aa.SEA.elevator.api.ElevatorFactory;
 import univavignon.m1informatique.aa.SEA.flow.api.FlowFactory;
-import univavignon.m1informatique.aa.SEA.flow.api.IFlow;
 import univavignon.m1informatique.aa.SEA.flow.api.IFlowCommand;
-import univavignon.m1informatique.aa.SEA.sequencer.api.SequencerFactory;
-import univavignon.m1informatique.aa.SEA.sequencer.impl.DummySequencer;
 
-public class SimulationUI implements IFlowCommand {
-
-	/**
-	 * 
-	 */
-	public FlowFactory flowFactory;
-
-	/**
-	 * Getter of flowFactory
-	 */
-	public FlowFactory getFlowFactory() {
-	 	 return flowFactory; 
-	}
-
-	/**
-	 * Setter of flowFactory
-	 */
-	public void setFlowFactory(FlowFactory flowFactory) { 
-		 this.flowFactory = flowFactory; 
-	}
-
-	/**
-	 * 
-	 */
-	public void start() { 
-		// TODO Auto-generated method
-		//IFlowCommand ifc = flowFactory.buildFlow(new File("flowSetting"));
-		//ifc.start();
-	 }
+public class SimulationUI
+{
 	
-	public static void main(String[]args) {
-		final File flowFile = null; // TODO : Retrieve from arguments.
-		final DummySequencer s = SequencerFactory.createSequencer(0,-1);		
-		final IElevatorCommand command = null;
-		final IControlSystem cs = ControlSystemFactory.createControlSystem(command);
-		final IElevatorUI elevatorUI = ElevatorUIFactory.createElevatorUI(cs);
-		final IFlow flow = FlowFactory.buildFlow(flowFile, elevatorUI);	
+	/**
+	 * 	Configure l'ensemble du système et interagie avec l'utilisateur
+	 */
+	public static void main(String[]args)
+	{		
+		// Récupération des informations pour la créaton de la simulation
+		System.out.println("Bienvenue au système de simulation d'ascenceur.\n");
+		//Pour Elevator et flow
+		String fileElevator = IHM.displayFileRequestInteract("Entrer le nom du fichier de configuration de l'elevator.");
+		String fileFlow = IHM.displayFileRequestInteract("Entrer le nom du fichier de configuration du flow d'utilisateurs.");
+		//Pour Simulator
+		long simuContraction = IHM.displayNumberInteract("Choisir contraction/extention:\nNombre positif pour une extention, négatif pour une contraction");
+		long simuOrigine = IHM.displaySelectTimeInteract("Entrer l'origine de la simulation: ");
 		
-	
+		// Création des composants de la simulation
+		ElevatorFactory.buildElevator(new File(fileElevator));
+		IFlowCommand flowCommand = FlowFactory.buildFlow(fileFlow, simuContraction, simuOrigine);
+		
+		// Lancement de la simulation
+		boolean b = IHM.displayBooleanInteract("Commancer la simulation ?");
+		if(b==true)	flowCommand.start();
+		
+		System.out.println("Fin du système de simulation d'ascenceur.");
+		
 	}
 
 }

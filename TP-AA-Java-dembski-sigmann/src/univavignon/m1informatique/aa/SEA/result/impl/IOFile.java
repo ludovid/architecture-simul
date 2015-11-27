@@ -13,20 +13,20 @@ import java.util.Scanner;
 public class IOFile
 {
 
-	// Type des donnï¿½es rï¿½cupï¿½rï¿½: lvlDepart | lvlArrivï¿½ | tCall | tArriveElevator | Dï¿½partElev | Arrivï¿½eEtage
+	// Type des donnïées récupéré: lvlDepart | lvlArrivé | tCall | tArriveElevator | DépartElev | ArrivéeEtage
 	/**
-	 * 
+	 * @param file Fichier dans lequel on doit récupérer les données
 	 * @return 
 	 */
 	public static SimulationData read(String file)
 	{
-		// Arrayliste stockera les diffï¿½rentes donnï¿½es
+		// Arrayliste stockera les différentes données
 		int nbData = 6;
 		ArrayList data[];
 		data = new ArrayList[nbData];
 		for(int i=0;i<nbData;i++)	data[i] = new ArrayList();
 		
-		// Rï¿½cupï¿½ration des donnï¿½es dans le fichier texte
+		// Récupération des données dans le fichier texte
 		try{
 			Scanner scanner = new Scanner(new FileInputStream(file), "UTF-8");
 			for(int i=0;scanner.hasNextLong();i++)
@@ -38,13 +38,14 @@ public class IOFile
 	}
 
 	/**
-	 * 
+	 * Ecrit les données dans un fichier nommé par la result+date+heure
+	 * @param data Donnée à ecrire
 	 * @param data 
 	 */
 	public static void write(String data)
 	{
 		//Rï¿½cupï¿½ration de la date pour le nom de fichier
-		SimpleDateFormat formatter = new SimpleDateFormat ("dd-MM-yyyy_HH-mm" );
+		SimpleDateFormat formatter = new SimpleDateFormat ("dd-MM-yyyy_HH-mm");
 		String fileName = new String ("result_"+formatter.format(new Date())+".txt"); 
 		
 		try{
@@ -54,6 +55,11 @@ public class IOFile
 		}catch (IOException exception){System.out.println ("Erreur lors de l'ecriture: " + exception.getMessage());}
 	} 
 	
+	/**
+	 * 
+	 * @param l ArrayList à convertir en simple tableau
+	 * @return tableau équivalant à l'ArrayList passé en paramètre
+	 */
 	private static long[] toLongTab(ArrayList l)
 	{
 		int s = l.size();

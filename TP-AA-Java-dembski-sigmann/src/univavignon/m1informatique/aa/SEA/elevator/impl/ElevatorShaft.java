@@ -207,7 +207,6 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 			else
 			{
 				this.sensor[this.elevator.position][1].setDetection(false); // sinon false
-				this.elevator.position--;
 			}
 			
 			// si on croise le capteur du bas de l'etage
@@ -217,7 +216,7 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 			else
 			{
 				this.sensor[this.elevator.position][0].setDetection(false); // sinon false
-				this.elevator.position--;
+				this.elevator.position++;
 			}
 		}
 		else if(this.elevator.direction == Direction.Up) // elevator monte
@@ -233,7 +232,7 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 			else
 			{
 				this.sensor[this.elevator.position][0].setDetection(false); // sinon false
-				this.elevator.position++;
+				
 			}
 			
 			// si on croise le capteur du haut de l'etage
@@ -243,7 +242,7 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 			else
 			{
 				this.sensor[this.elevator.position][1].setDetection(false); // sinon false
-				this.elevator.position++;
+				this.elevator.position--;
 			}
 		}
 		

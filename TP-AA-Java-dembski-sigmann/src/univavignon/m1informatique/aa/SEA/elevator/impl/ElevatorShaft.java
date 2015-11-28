@@ -62,9 +62,9 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 	 	  this.sensor = new Sensor[nbs][2];
 	 	  int k = 0;
 	 	  for(int i = 0; i < nbs; i++) {
-			this.sensor[i][0] = new Sensor(k);
+			this.sensor[i][0] = new Sensor(k, k*(dbf+eh));
 			k++;
-			this.sensor[i][1] = new Sensor(k);
+			this.sensor[i][1] = new Sensor(k, (k*(dbf+eh))+eh);
 			k++;
 	 	  }
 	 	  this.shaftHeight = nbf * (dbf + eh);
@@ -181,26 +181,64 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 		{
 			long tmpT = t - this.lastCallTrigger;
 			this.distanceFromBottom += tmpT * this.constSpeed;
-			
-			this.isAtLevel(distanceFromBottom/distanceBetweenFloors);
+			if(this.elevator.direction == Direction.Down)
+			{
+				this.distanceFromBottom -= tmpT * this.constSpeed;
+			}
+			else if(this.elevator.direction == Direction.Up)
+			{
+				this.distanceFromBottom += tmpT * this.constSpeed;
+			}
+			this.isAtLevel();
 		}
 	}
 	
-	public void isAtLevel(double pos) { 
+	public void isAtLevel() { 	
+		// position du bas de la cabine (étage)
+		// la position est pas forcément la meme selon le haut ou le bas de la cabine : si on descend
+		// et que on coupe le capteur de l'étage précédent on peut plus le verifier car la position du bas de la cabine est à l'étage d'en dessous
+		this.elevator.position = (int) (this.distanceFromBottom / (this.distanceBetweenFloors + this.elevatorHeight));
 		
-		if(this.elevator.direction == Direction.Down)
+		if(this.elevator.direction == Direction.Down) // elevator descend
 		{
-			this.elevator.position = (int) (pos - this.elevatorHeight);
-			//if(this.elevator.position)
-				this.sensor[this.elevator.position][1].setDetection(true);
+			// si on croise le capteur du haut de l'etage
+			if(this.distanceFromBottom <= this.sensor[this.elevator.position][1].distanceFromBottom
+				&& this.distanceFromBottom + this.elevatorHeight > this.sensor[this.elevator.position][1].distanceFromBottom)
+				this.sensor[this.elevator.position][1].setDetection(true); // si on est sur le capteur 
+			else
+			{
+				this.sensor[this.elevator.position][1].setDetection(false); // sinon false
+			}
+			
+			// si on croise le capteur du bas de l'etage
+			if(this.distanceFromBottom <= this.sensor[this.elevator.position][0].distanceFromBottom
+				&& this.distanceFromBottom + this.elevatorHeight > this.sensor[this.elevator.position][0].distanceFromBottom)
+				this.sensor[this.elevator.position][0].setDetection(true); // si on est sur le capteur 
+			else
+			{
+				this.sensor[this.elevator.position][0].setDetection(false); // sinon false
+			}
 		}
-		else if(this.elevator.direction == Direction.Up)
-		{
-			this.elevator.position = (int) (pos + this.elevatorHeight);
-			//if(this.elevator.position < )
-				this.sensor[this.elevator.position][0].setDetection(true);
+		else if(this.elevator.direction == Direction.Up) // elevator monte
+		{			
+			// si on croise le capteur du bas de l'etage
+			if(this.distanceFromBottom + this.elevatorHeight >= this.sensor[this.elevator.position][0].distanceFromBottom
+				&& this.distanceFromBottom < this.sensor[this.elevator.position][0].distanceFromBottom)
+				this.sensor[this.elevator.position][0].setDetection(true); // si on est sur le capteur 
+			else
+			{
+				this.sensor[this.elevator.position][0].setDetection(false); // sinon false
+			}
+			
+			// si on croise le capteur du haut de l'etage
+			if(this.distanceFromBottom + this.elevatorHeight >= this.sensor[this.elevator.position][1].distanceFromBottom
+				&& this.distanceFromBottom < this.sensor[this.elevator.position][1].distanceFromBottom)
+				this.sensor[this.elevator.position][1].setDetection(true); // si on est sur le capteur 
+			else
+			{
+				this.sensor[this.elevator.position][1].setDetection(false); // sinon false
+			}
 		}
-		// croiser capteur à faire
 		
 		this.elevator.IEN.notifyLevel(elevator.position);
 		System.out.println("elevator crossed level "+elevator.position);

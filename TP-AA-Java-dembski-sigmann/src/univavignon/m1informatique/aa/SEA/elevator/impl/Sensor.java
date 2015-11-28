@@ -11,11 +11,24 @@ public class Sensor {
 	 */
 	public int id;
 	/**
+	 * 
+	 */
+	public double distanceFromBottom;
+	
+	public double getDistanceFromBottom() {
+		return distanceFromBottom;
+	}
+	
+	public void setDistanceFromBottom(double distanceFromBottom) {
+		this.distanceFromBottom = distanceFromBottom;
+	}
+	/**
 	 * Constructeur
 	 */
-	public Sensor(int id) {
+	public Sensor(int id, double dfb) {
 	 	  this.detection = false;
 	 	  this.id = id;
+	 	  this.distanceFromBottom = dfb;
 	}
 	/**
 	 * Getter of detection

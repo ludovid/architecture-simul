@@ -198,6 +198,7 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 		// la position est pas forcément la meme selon le haut ou le bas de la cabine : si on descend
 		// et que on coupe le capteur de l'étage précédent on peut plus le verifier car la position du bas de la cabine est à l'étage d'en dessous
 		this.elevator.position = (int) (this.distanceFromBottom / (this.distanceBetweenFloors + this.elevatorHeight));
+		int topPosition = (int) ((this.distanceFromBottom + this.elevatorHeight) / (this.distanceBetweenFloors + this.elevatorHeight));
 		
 		if(this.elevator.direction == Direction.Down) // elevator descend
 		{

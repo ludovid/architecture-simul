@@ -12,6 +12,8 @@ import org.w3c.dom.NodeList;
 
 public class ElevatorFactory {
 
+	// public ElevatorShaft ES;
+	
 	/**
 	 * 
 	 * @param setting 
@@ -32,6 +34,7 @@ public class ElevatorFactory {
 			double distanceBetweenFloors = Double.parseDouble(list.item(4).getTextContent());
 			// charger fichier xml et mettre les données pour construire les objets de l'elevator
 			ElevatorShaft ES = new ElevatorShaft(elevatorHeight, floorNumber, distanceBetweenFloors, doorTime, speed);
+			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -14,14 +14,6 @@ public class Sensor {
 	 * 
 	 */
 	public double distanceFromBottom;
-	
-	public double getDistanceFromBottom() {
-		return distanceFromBottom;
-	}
-	
-	public void setDistanceFromBottom(double distanceFromBottom) {
-		this.distanceFromBottom = distanceFromBottom;
-	}
 	/**
 	 * Constructeur
 	 */
@@ -30,6 +22,15 @@ public class Sensor {
 	 	  this.id = id;
 	 	  this.distanceFromBottom = dfb;
 	}
+	
+	public double getDistanceFromBottom() {
+		return distanceFromBottom;
+	}
+	
+	public void setDistanceFromBottom(double distanceFromBottom) {
+		this.distanceFromBottom = distanceFromBottom;
+	}
+	
 	/**
 	 * Getter of detection
 	 */

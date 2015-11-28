@@ -7,14 +7,6 @@ import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
 
 
 public class ElevatorShaft implements Event, IElevatorCommand{
-	
-	
-	public long getLastCallTrigger() {
-		return lastCallTrigger;
-	}
-	public void setLastCallTrigger(long lastCallTrigger) {
-		this.lastCallTrigger = lastCallTrigger;
-	}
 
 	public long lastCallTrigger;
 	
@@ -74,6 +66,15 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 	 	  this.distanceFromBottom = 0.0;
 	 	  this.constSpeed = speed;
 	}
+	
+	public long getLastCallTrigger() {
+		return lastCallTrigger;
+	}
+	
+	public void setLastCallTrigger(long lastCallTrigger) {
+		this.lastCallTrigger = lastCallTrigger;
+	}
+	
 	/**
 	 * Getter of sensor
 	 */
@@ -176,19 +177,21 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 	@Override
 	public void trigger(long t) {
 		if(this.lastCallTrigger == 0)
-			this.lastCallTrigger = t;
+			this.lastCallTrigger = t; // définir date du tout premier call
 		else
 		{
-			long tmpT = t - this.lastCallTrigger;
-			this.distanceFromBottom += tmpT * this.constSpeed;
+			long tmpT = t - this.lastCallTrigger; // calculer le temps écouler depuis le dernier call
+			// si on descend la distance au sol diminue
 			if(this.elevator.direction == Direction.Down)
 			{
 				this.distanceFromBottom -= tmpT * this.constSpeed;
 			}
+			// si on monte la distance au sol augmente
 			else if(this.elevator.direction == Direction.Up)
 			{
 				this.distanceFromBottom += tmpT * this.constSpeed;
 			}
+			// savoir ou on est maintenant
 			this.isAtLevel();
 		}
 	}
@@ -200,17 +203,6 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 		
 		if(this.elevator.direction == Direction.Down) // elevator descend
 		{
-			// si on croise le capteur du haut de l'etage
-			if(this.distanceFromBottom <= this.sensor[this.elevator.position][1].distanceFromBottom
-				&& this.distanceFromBottom + this.elevatorHeight > this.sensor[this.elevator.position][1].distanceFromBottom)
-				this.sensor[this.elevator.position][1].setDetection(true); // si on est sur le capteur 
-			else
-			{
-				this.sensor[this.elevator.position][1].setDetection(false); // sinon false
-				this.elevator.position++;
-
-			}
-			
 			// si on croise le capteur du bas de l'etage
 			if(this.distanceFromBottom <= this.sensor[this.elevator.position][0].distanceFromBottom
 				&& this.distanceFromBottom + this.elevatorHeight > this.sensor[this.elevator.position][0].distanceFromBottom)
@@ -218,7 +210,7 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 			else
 			{
 				this.sensor[this.elevator.position][0].setDetection(false); // sinon false
-				this.elevator.position++;
+				this.elevator.position++; // la position de la cabine est toujours celle de l'étage du dessus
 			}
 		}
 		else if(this.elevator.direction == Direction.Up) // elevator monte
@@ -226,19 +218,7 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 			// si on monte on veut savoir la position du haut de la cabine (étage)
 			// on arrondi pour considérer une position comme un milieu d'étage (si on est à 1.2 on est au 1er - 1.6 au 2eme - 3.2 au 3eme ...)
 			this.elevator.position = (int) Math.round((this.distanceFromBottom + this.elevatorHeight) / (this.distanceBetweenFloors + this.elevatorHeight));
-			
-			// si on croise le capteur du bas de l'etage
-			if(this.distanceFromBottom + this.elevatorHeight >= this.sensor[this.elevator.position][0].distanceFromBottom
-				&& this.distanceFromBottom < this.sensor[this.elevator.position][0].distanceFromBottom)
-				this.sensor[this.elevator.position][0].setDetection(true); // si on est sur le capteur 
-			else
-			{
-				this.sensor[this.elevator.position][0].setDetection(false); // sinon false
-				this.elevator.position--;
-
-				
-			}
-			
+					
 			// si on croise le capteur du haut de l'etage
 			if(this.distanceFromBottom + this.elevatorHeight >= this.sensor[this.elevator.position][1].distanceFromBottom
 				&& this.distanceFromBottom < this.sensor[this.elevator.position][1].distanceFromBottom)
@@ -246,26 +226,29 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 			else
 			{
 				this.sensor[this.elevator.position][1].setDetection(false); // sinon false
-				this.elevator.position--;
+				this.elevator.position--; // la position de la cabine est toujours celle de l'étage du dessous
 			}
 		}
 		
-		this.elevator.IEN.notifyLevel(elevator.position);
+		this.elevator.IEN.notifyLevel(elevator.position); // envoyer la notif au CS
 		System.out.println("elevator crossed level "+elevator.position);
 	 }
 	
 	/**
 	 * 
 	 */
+	@Override
 	public void stopAtNextLevel() { 
-		this.engine.off();
-		
+		this.engine.off(); // couper le moteur quand on arrive
+		this.elevator.openDoor(); // ouvrir les portes
+		this.elevator.closeDoor(); // fermer les portes
 		System.out.println("elevator stop at level final");
 	 }
 	
 	@Override
 	public void move(Direction direction) {
-		// TODO Auto-generated method stub
-		
+		this.elevator.moveElevator(direction); // mettre en mouvement l'elevator dans telle direction
+		this.elevator.IEN.notifyState(this.elevator.state); // envoyer la notif au CS
+		System.out.println("elevator move "+direction);		
 	}
 }

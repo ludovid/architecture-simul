@@ -71,12 +71,11 @@ public class Engine {
 	/**
 	 * 
 	 * @param direction 
-	 * @param constSpeed
 	 */
 	public void on(Direction direction) { 
 		this.engineOn = true;
 		this.direction = direction;
-		changeSpeed(this.constSpeed);
+		this.changeSpeed(this.constSpeed);
 	 }
 	/**
 	 * 
@@ -84,7 +83,7 @@ public class Engine {
 	public void off() { 
 		this.engineOn = false;
 		this.direction = Direction.None;
-		changeSpeed(0);
+		this.changeSpeed(0);
 	 }
 	/**
 	 * 

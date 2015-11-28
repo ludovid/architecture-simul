@@ -6,7 +6,7 @@ import univavignon.m1informatique.aa.SEA.commontype.State;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
 
 
-public class Elevator implements IElevatorCommand {
+public class Elevator {
 
 	/**
 	 * 
@@ -106,23 +106,14 @@ public class Elevator implements IElevatorCommand {
 	 */
 	public void closeDoor() { 
 		this.state = State.Pause;
-		
 		System.out.println("elevator close door");
 	 }
 	/**
 	 * 
 	 * @param direction 
 	 */
-	public void move(Direction direction) { 
+	public void moveElevator(Direction direction) { 
 		this.direction = direction;
 		this.state = State.Move;
-		this.IEN.notifyState(this.state);
-		System.out.println("elevator move "+direction);
 	 }
-	
-	@Override
-	public void stopAtNextLevel() {
-		// TODO Auto-generated method stub
-		
-	}
 }

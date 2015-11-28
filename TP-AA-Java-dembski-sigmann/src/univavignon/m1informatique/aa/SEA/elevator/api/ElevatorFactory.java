@@ -18,7 +18,7 @@ public class ElevatorFactory {
 	 * @return 
 	 * @throws ParserConfigurationException 
 	 */
-	public static boolean BuildElevator(File setting) throws ParserConfigurationException {
+	public static boolean buildElevator(File setting) throws ParserConfigurationException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		try {

@@ -194,11 +194,9 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 	}
 	
 	public void isAtLevel() { 	
-		// position du bas de la cabine (étage)
-		// la position est pas forcément la meme selon le haut ou le bas de la cabine : si on descend
-		// et que on coupe le capteur de l'étage précédent on peut plus le verifier car la position du bas de la cabine est à l'étage d'en dessous
-		this.elevator.position = (int) (this.distanceFromBottom / (this.distanceBetweenFloors + this.elevatorHeight));
-		int topPosition = (int) ((this.distanceFromBottom + this.elevatorHeight) / (this.distanceBetweenFloors + this.elevatorHeight));
+		// par défaut on veut savoir la position du bas de la cabine (étage)
+		// on arrondi pour considérer une position comme un milieu d'étage (si on est à 1.2 on est au 1er - 1.6 au 2eme - 3.2 au 3eme ...)
+		this.elevator.position = (int) Math.round(this.distanceFromBottom / (this.distanceBetweenFloors + this.elevatorHeight));
 		
 		if(this.elevator.direction == Direction.Down) // elevator descend
 		{
@@ -222,6 +220,10 @@ public class ElevatorShaft implements Event, IElevatorCommand{
 		}
 		else if(this.elevator.direction == Direction.Up) // elevator monte
 		{			
+			// si on monte on veut savoir la position du haut de la cabine (étage)
+			// on arrondi pour considérer une position comme un milieu d'étage (si on est à 1.2 on est au 1er - 1.6 au 2eme - 3.2 au 3eme ...)
+			this.elevator.position = (int) Math.round((this.distanceFromBottom + this.elevatorHeight) / (this.distanceBetweenFloors + this.elevatorHeight));
+			
 			// si on croise le capteur du bas de l'etage
 			if(this.distanceFromBottom + this.elevatorHeight >= this.sensor[this.elevator.position][0].distanceFromBottom
 				&& this.distanceFromBottom < this.sensor[this.elevator.position][0].distanceFromBottom)

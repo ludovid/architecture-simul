@@ -24,8 +24,10 @@ public class DummyControlSystem implements IControlSystem {
 	 * @see univavignon.m1informatique.aa.SEA.controlSystem.api.IControlSystem#stopRequest(int, univavignon.m1informatique.aa.SEA.commontype.Direction)
 	 */
 	@Override
-	public void stopRequest(int level, Direction direction) {
-		// IN
+	public void stopRequest(int level, Direction direction,
+			IElevatorUIRequest uiRequest) {
+		// TODO Auto-generated method stub
+		
 	} 
 
 }

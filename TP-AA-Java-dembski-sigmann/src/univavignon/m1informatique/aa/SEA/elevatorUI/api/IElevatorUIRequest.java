@@ -1,11 +1,12 @@
 package univavignon.m1informatique.aa.SEA.elevatorUI.api;
 
-public interface IElevatorUIRequest {
+import univavignon.m1informatique.aa.SEA.commontype.Direction;
 
-	/**
-	 * 
-	 * @param t 
-	 */
-	public void notify(long t); 
+public interface IElevatorUIRequest 
+{
 
+	Direction getDirection();
+	void notifyStop(long t);
+	int getLevel();
+	
 }

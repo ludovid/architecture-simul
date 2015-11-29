@@ -1,28 +1,33 @@
 package univavignon.m1informatique.aa.SEA.elevatorUI.api;
 
+import univavignon.m1informatique.aa.SEA.elevator.impl.Elevator;
 import univavignon.m1informatique.aa.SEA.elevatorUI.impl.DummyElevatorUI;
+import univavignon.m1informatique.aa.SEA.elevatorUI.impl.ElevatorUIRequest;
 import univavignon.m1informatique.aa.SEA.flow.api.IUser;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
 
-public class ElevatorUIRequestFactory {
+public class ElevatorUIRequestFactory 
+{
 
 	/**
 	 * 
 	 */
-	public DummyElevatorUI dummyElevatorUI;
+	public IElevatorUI ElevatorUI;
 
 	/**
-	 * Getter of dummyElevatorUI
+	 * Getter of ElevatorUI
 	 */
-	public DummyElevatorUI getDummyElevatorUI() {
-	 	 return dummyElevatorUI; 
+	public IElevatorUI getElevatorUI() 
+	{
+	 	 return ElevatorUI; 
 	}
 
 	/**
-	 * Setter of dummyElevatorUI
+	 * Setter of ElevatorUI
 	 */
-	public void setDummyElevatorUI(DummyElevatorUI dummyElevatorUI) { 
-		 this.dummyElevatorUI = dummyElevatorUI; 
+	public void setElevatorUI(IElevatorUI ElevatorUI)
+	{ 
+		 this.ElevatorUI = ElevatorUI; 
 	}
 	/**
 	 * 
@@ -30,20 +35,6 @@ public class ElevatorUIRequestFactory {
 	 * @param direction 
 	 * @param user 
 	 */
-	public static void createCall(int level, Direction direction, IUser user) { 
-		// TODO Auto-generated method
-		/**
-		 * user.notifyCall(t);
-		 */
-	 }
-
-	/**
-	 * 
-	 * @param level 
-	 * @param user 
-	 */
-	public static void createMove(int level, IUser user) { 
-		// TODO Auto-generated method
-	 } 
+	
 
 }

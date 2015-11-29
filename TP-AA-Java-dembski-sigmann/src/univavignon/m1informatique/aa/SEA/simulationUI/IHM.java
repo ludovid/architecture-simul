@@ -1,8 +1,5 @@
 package univavignon.m1informatique.aa.SEA.simulationUI;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -25,6 +22,7 @@ public class IHM
 			b = FileControleur.fileExist(r);
 			if(b==false)	System.out.println("Fichier inexistant.");
 		}while(b==false);
+		sc.close();
 		return r;
 	}
 	
@@ -43,6 +41,7 @@ public class IHM
 			r = sc.nextLine();
 			if(r!="y"&&r!="n")	System.out.println("Réponse incorrecte.");
 		}while(r!="y"&&r!="n");
+		sc.close();
 		return (r=="y");
 	}
 	
@@ -55,7 +54,9 @@ public class IHM
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println(outString);
-		return Long.parseLong(sc.nextLine());
+		String disp = sc.nextLine();
+		sc.close();
+		return Long.parseLong(disp);
 	}
 	
 	/**
@@ -74,6 +75,7 @@ public class IHM
 			System.out.println("Minimum: "+Long.toString(min)+", Maximum: "+Long.toString(max));
 			r = Long.parseLong(sc.nextLine());
 		}while(r>max||r<min);
+		sc.close();
 		return r;
 	}
 	

@@ -11,8 +11,8 @@ public final class ElevatorUIFactory {
 	 * 
 	 * @return
 	 */
-	public static IElevatorUI createElevatorUI(IControlSystem moveOptimizer){
-		return ElevatorUIFactoryImplementation.createElevatorUI(moveOptimizer);
+	public static IElevatorUI createElevatorUI(IControlSystem controlSystem){
+		return ElevatorUIFactoryImplementation.createElevatorUI(controlSystem);
 	}
 }
 

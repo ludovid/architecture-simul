@@ -63,7 +63,7 @@ public class DummyFlow implements IFlow {
 		final int start = generator.nextInt(getMaxLevel());
 		int destination;
 		while ((destination = generator.nextInt(getMaxLevel())) == start) {};
-		users.add(new User(start, destination, System.currentTimeMillis() + 1000));
+		//users.add(new User(start, destination, System.currentTimeMillis() + 1000));
 		// Check current users.
 		for (final IUser user : users) {
 			if (user.getStartTime() >= t) {

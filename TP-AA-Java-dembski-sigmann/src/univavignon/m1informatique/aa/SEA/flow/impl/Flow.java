@@ -44,7 +44,7 @@ public class Flow implements IFlow {
 	 * 
 	 * @param ui
 	 */
-	public DummyFlow(final String flowFile, long time, long time2) {
+	public Flow(final String flowFile, long time, long time2) {
 		//this.ui=ElevatorUI;
 		seq = new Sequenceur (time, time2);
 		this.simuContraction=time;
@@ -227,8 +227,8 @@ public class Flow implements IFlow {
 			//et si l'état de l'ascenseur permet d'y rentrer
 			// et si l'ascenseur est bien à l'étage de l'utilisateur
 			else if(u.getStartTime()==-1 && u.callOrNot() 
-					&& Elevatorui.getState()==State.Transient &&
-					Elevatorui.getLevel()==u.getStartLevel())
+					/*&& Elevatorui.getState()==State.Transient &&
+					Elevatorui.getLevel()==u.getStartLevel()*/)
 			{
 				// on envoie une requête pour emmener l'utilisateur à l'étage désiré
 				Elevatorui.stopRequest(u.getDestinationLevel(), u.getDirection());
@@ -242,8 +242,8 @@ public class Flow implements IFlow {
 			// et si il est à l'étage désiré
 			// et si les portes sont ouvertes
 			else if(u.getEndTime()==-1 && u.callOrNot() && u.getStartTime()!=1 
-					&&Elevatorui.getState()== State.Transient
-					&& Elevatorui.getLevel() == u.getDestinationLevel() )
+					/*&&Elevatorui.getState()== State.Transient
+					&& Elevatorui.getLevel() == u.getDestinationLevel()*/ )
 			{
 				// on indique à quel moment l'utilisateur est arrivé
 				u.setEnd(t);

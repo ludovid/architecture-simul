@@ -50,9 +50,6 @@ public class Optimizer implements IElevatorNotifier {
 	 * 
 	 */
 	public void notifyLevel(int level) {
-		/** Si **/
-		if(RequestList.currentList.size() == 1)
-			command.move(RequestList.currentList.get(0).getDirection());
 		
 		currentLevel = level;
 		direction = RequestList.currentList.get(0).getDirection();
@@ -72,9 +69,10 @@ public class Optimizer implements IElevatorNotifier {
 				 *  requête traité.
 				 */
 				if(RequestList.currentList.get(0).getLevel() == level) {
-					RequestList.currentList.get(0).uiRequest.notify();
+					RequestList.currentList.get(0).uiRequest.notify(0);
 					RequestList.currentList.remove(0);
 				}
+				command.move(direction);
 			}
 		}
 		/** La liste principale est vide. On transfert la liste secondaire
@@ -87,6 +85,21 @@ public class Optimizer implements IElevatorNotifier {
 			RequestList.currentList = RequestList.nextList;
 			/** On trie la nouvelle currentList **/
 			Collections.sort(RequestList.currentList);
+			
+			/** Si il y a des requêtes qui vont dans le
+			 *  même sens mais qui ne se trouvent pas sur le chemin
+			 *  de l'elevator, on fait bouger l'elevator dans leur direction
+			 *  Par exemple: On finit le traitement des requêtes montante et lors
+			 *  du changement de liste, il y a une requête descendante qui se trouve
+			 *  au dessus de l'elevator, alors on fait bouger l'elevator dans sa direction
+			 *  pour le récupérer avant de descendre
+			 */
+			for(CSRequest c : RequestList.currentList) {
+				if(c.getLevel() > level && c.getDirection() == Direction.Down)
+					command.move(Direction.Up);
+				if(c.getLevel() < level && c.getDirection() == Direction.Up)
+					command.move(Direction.Down);
+			}
 			
 			RequestList.nextList = RequestList.otherList;
 			RequestList.otherList.clear();

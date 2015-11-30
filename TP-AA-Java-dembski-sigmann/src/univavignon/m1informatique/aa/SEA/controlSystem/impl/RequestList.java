@@ -1,7 +1,9 @@
 package univavignon.m1informatique.aa.SEA.controlSystem.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
+
+import univavignon.m1informatique.aa.SEA.commontype.Direction;
+import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
 
 public class RequestList {
 	
@@ -14,6 +16,7 @@ public class RequestList {
 	public static ArrayList<CSRequest> currentList;
 	public static ArrayList<CSRequest> nextList;
 	public static ArrayList<CSRequest> otherList;
+	public static IElevatorCommand command;
 	
 	/**
 	 * @name: addRequest @param: la requête transformé d'UIRequest
@@ -33,12 +36,19 @@ public class RequestList {
 	 * l'étage actuel de l'elevator, alors la requête est ajouté à otherList.
 	 */
 	public static void addRequest(CSRequest request) {
-		if(currentList.isEmpty())
+		/** C'est la 1ere requête, donc on fait bouger l'elevator
+		 *  dans la direction de la requête.
+		 */
+		if(currentList.isEmpty()) {
 			currentList.add(request);
+			command.move(RequestList.currentList.get(0).getDirection());
+		}
+		if(currentList.size() == 1)
+			command.move(RequestList.currentList.get(0).getDirection());
 		else if(request.getDirection() == currentList.get(0).getDirection()) {
 			if(request.getLevel() < currentList.get(0).getLevel()
-			   && request.getLevel() > Optimizer.currentLevel) {
-				currentList.add(0, request);
+			   && request.getLevel() > Optimizer.currentLevel ){
+				currentList.add(0, request);	
 			}
 			if(request.getLevel() >= currentList.get(0).getLevel()
 			   && request.getLevel() > Optimizer.currentLevel) {

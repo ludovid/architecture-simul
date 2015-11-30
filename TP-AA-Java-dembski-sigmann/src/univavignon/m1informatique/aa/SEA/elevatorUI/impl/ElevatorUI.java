@@ -20,9 +20,7 @@ public class ElevatorUI implements IElevatorUI
 		this.cs = controlsystem;
 	}
 	
-	/**
-	 * 
-	 */
+
 	public IUser iUser;
 
 	/**
@@ -41,55 +39,19 @@ public class ElevatorUI implements IElevatorUI
 		 this.iUser = iUser; 
 	}
 
-	/**
-	 * 
-	 *  stopRequest crée une requête pour le controlsystem à partir d'un étage, d'une direction.
+	/* 
+	 *  //stopRequest crée une requête pour le controlsystem à partir d'un étage, d'une direction
+	 *  et d'une requête de type IElevatorUIRequest
 	 */
-	
 	@Override
-	public void stopRequest(int level, Direction direction) {
-		 // Depend de comment il creer la request 
-		//soit à partir d'une request directement soit à partir des info mais sur les interface c'est comme ça 
-		cs.stopRequest(level,direction, null);
+	public void stopRequest(int level, Direction direction,
+			IElevatorUIRequest uiRequest) {
+		cs.stopRequest(level, direction, uiRequest);
 		
-	} 
+	}
 
 	
-	public static void createCall(int level, Direction direction, IUser user) 
-	 { 
-		// VOIR COMMENT EST ENREGISTRE LES REQUEST DANS COMMAND SYSTEM 
-		//CHANGER recRequest par le nom de la méthode
-		//un call aura une direction et un move non ...		 
-		  cs.stopRequest(level, direction, null); 
-		  // faire un notify
-	 }
-
-	/**
-	 * 
-	 * @param level 
-	 * @param user 
-	 */
-	public static void createMove(int level, IUser user) 
- 	{
 	
-		// VOIR COMMENT EST ENREGISTRE LES REQUEST DANS COMMAND SYSTEM 
-		//ET CHANGER recRequest par le nom de la méthode
-				  cs.stopRequest(level, user.getDirection(), null);  
 
-	} 
-
-	// ta demande est complètement dafuk car on a meme pas de commontype elevatorState
-	public State getState() 		
-		{
-			return null;    
-			//return cs.notifyState();
-			
-		}
-
-	public int getLevel() 				// la pareil faut voir si ils ont un getLevel
-		{                
-			//return cs.notifyLevel();
-		return 0;
-		}
 }
 

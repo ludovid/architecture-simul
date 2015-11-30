@@ -7,6 +7,7 @@ public class ElevatorUIFactoryImplementation {
 	
 static ElevatorUI eUI = null;
 	
+	// constructeur d'un ElevatorUI 
 	public static IElevatorUI createElevatorUI(final IControlSystem cs){
 		if(eUI == null)
 			eUI = new ElevatorUI(cs); 

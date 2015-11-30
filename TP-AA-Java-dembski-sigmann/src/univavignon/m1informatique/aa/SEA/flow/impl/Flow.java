@@ -14,41 +14,48 @@ import univavignon.m1informatique.aa.SEA.commontype.Direction;
 import univavignon.m1informatique.aa.SEA.commontype.State;
 import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
 import univavignon.m1informatique.aa.SEA.elevator.impl.Elevator;
+import univavignon.m1informatique.aa.SEA.elevatorUI.api.ElevatorUIRequestFactory;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUI;
 import univavignon.m1informatique.aa.SEA.flow.api.IFlow;
 import univavignon.m1informatique.aa.SEA.flow.api.IUser;
+import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
 import univavignon.m1informatique.aa.SEA.sequencer.api.Sequenceur;
 import univavignon.m1informatique.aa.SEA.sequencer.impl.DummySequencer;
-/**
- * Approved by teacher
- * @author uapv1102294
- *
- */
+import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
+
 public class Flow implements IFlow {
 
-	/** **/
+	// liste pour stocker les utilisateurs et leurs informations
 	private ArrayList<IUser> users = new ArrayList<IUser>();
 
-	/** **/
-	private final IElevatorUI Elevatorui=null;
-
-	/** **/
+	// instanciation
+	private ElevatorUIRequestFactory Elevatorui;
+	
+	// pour gérer les chiffres aléatoires
 	private final Random generator;
 	
+	// les deux données transmises par le SEA UI, le temps et le temps d'origine
 	private final long simuContraction;
 	private final long simuOrigine;
+	
+	// nombre de levels
 	private int nbLevels;
+	
+	// déclaration du Sequencer
 	private Sequenceur seq;
-	IElevatorCommand command;
-	/**
-	 * 
-	 * @param ui
-	 */
+	
+	
+	// constructeur
 	public Flow(final String flowFile, long time, long time2) {
-		//this.ui=ElevatorUI;
+		/*
+		 *  initialisation du Sequencer
+		 *  avec paramètres temporels origine et durée
+		 */
 		seq = new Sequenceur (time, time2);
 		this.simuContraction=time;
 		this.simuOrigine=time2;
+		
+		// liste utilisateurs et générateur de chiffres
 		this.users = new ArrayList<IUser>();
 		this.generator = new Random();
 	}
@@ -122,21 +129,31 @@ public class Flow implements IFlow {
 	}
 	
 	
+	/*
+	 * Fonction pour charger un fichier de configuration
+	 * 
+	 */
 	public void compute(File file) throws FileNotFoundException{
+		// on crée un scanner
 		Scanner scanner = new Scanner(file);
+		// on prépare les variables pour stocker les valeurs
 		String str = null;
 		 int heureAppel, etageDepart, etageArrivee;
-		 int id=0;
 		 while (scanner.hasNextLine()) {
 			 try {
+			 /*
+			  *  les fichiers sont de la forme :
+			  *  HeureAppel + EtageDepart + EtageArrivee 
+			  */
 		     heureAppel = scanner.nextInt();
 		     etageDepart = scanner.nextInt();
 		     etageArrivee = scanner.nextInt();
-		     id = scanner.nextInt();
 		     
 		     // ajout de l'utilisateur dans la liste
 		     users.add(new User(heureAppel, etageDepart, etageArrivee)); 
-		     // ajout de l'utilisateur dans le sequencer ?
+		 	// ajout de l'utilisateur dans le sequencer
+		     Event e = null;
+		     seq.addEvent(e,heureAppel);
 			 }
 			 catch (NoSuchElementException e){
 				 System.out.println("Il n'y a plus d'éléments");
@@ -144,6 +161,10 @@ public class Flow implements IFlow {
 	}
 	}
 
+	/*
+	 * permet de concevoir un fichier contenant l'ensemble des informations 
+	 * de la simulation
+	 */
 	
 	public File generateFlowCompleted (String file)
 	{
@@ -184,29 +205,12 @@ public class Flow implements IFlow {
 		return FlowCompleted;
 	}
 	
-	public int getMaxLevel() {
-		return nbLevels;
-	}
 
 	/*
-	 * (non-Javadoc)
-	 * @see univavignon.m1informatique.aa.SEA.sequencer.api.Event#trigger(long)
+	 * Fonction pour déclencher des modifications sur l'utilisateur
 	 */
 	@Override
 	public void trigger(long t) {
-		// Add random request.
-		/*final int start = generator.nextInt(getMaxLevel());
-		int destination;
-		while ((destination = generator.nextInt(getMaxLevel())) == start) {};
-		users.add(new User(start, destination, System.currentTimeMillis() + 1000));
-		// Check current users.
-		for (final IUser user : users) {
-			if (user.getStartTime() >= t) {
-				final Direction direction = null;
-				ui.stopRequest(user.getStartLevel(), direction);
-			}
-		}*/
-		
 		IUser u;
 		for (int i=0; i<users.size(); i++)
 		{
@@ -217,8 +221,7 @@ public class Flow implements IFlow {
 			if (!u.callOrNot() && u.getCallTime() <= t)
 			{
 				// on envoie une requête pour aller chercher l'utilisateur
-				Elevatorui.stopRequest(u.getStartLevel(), u.getDirection());
-				// on indique qu'il a appelé
+				Elevatorui.createCall(u.getStartLevel(),  u.getDirection(), u);
 				u.callOrNot(true);
 			}
 			
@@ -227,11 +230,11 @@ public class Flow implements IFlow {
 			//et si l'état de l'ascenseur permet d'y rentrer
 			// et si l'ascenseur est bien à l'étage de l'utilisateur
 			else if(u.getStartTime()==-1 && u.callOrNot() 
-					/*&& Elevatorui.getState()==State.Transient &&
+					/*&& cs.notifyState()==State.Transient /*&&
 					Elevatorui.getLevel()==u.getStartLevel()*/)
 			{
 				// on envoie une requête pour emmener l'utilisateur à l'étage désiré
-				Elevatorui.stopRequest(u.getDestinationLevel(), u.getDirection());
+				Elevatorui.createMove(u.getDestinationLevel(), u);
 				// on récupère le moment où l'utilisateur est entré
 				u.notifyMove(t);
 			}
@@ -253,4 +256,13 @@ public class Flow implements IFlow {
 		}
 	}
 
+	// permet de lancer la stimulation
+	public void start() {
+		seq.start();
+	}
+
+	// permet de récupérer le nombre de levels
+	public int getMaxLevel() {
+	return nbLevels;
+	}
 }

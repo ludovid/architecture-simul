@@ -7,7 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import univavignon.m1informatique.aa.SEA.elevator.api.ElevatorFactory;
 import univavignon.m1informatique.aa.SEA.flow.api.FlowFactory;
 import univavignon.m1informatique.aa.SEA.flow.api.IFlow;
-import univavignon.m1informatique.aa.SEA.flow.api.IFlowCommand;
 
 public class SimulationUI
 {

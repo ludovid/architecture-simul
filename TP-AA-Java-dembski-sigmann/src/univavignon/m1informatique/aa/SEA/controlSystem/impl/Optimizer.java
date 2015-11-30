@@ -62,7 +62,7 @@ public class Optimizer implements IElevatorNotifier {
 		if(!RequestList.currentList.isEmpty()) {
 			if(state == State.Move) {
 				if(RequestList.currentList.get(0).getLevel() == nextLevel) {
-					command.stopAtNextLevel(nextLevel);
+					command.stopAtNextLevel();
 				}
 			}
 			if(state == State.Pause) {

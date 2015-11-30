@@ -3,7 +3,6 @@ package univavignon.m1informatique.aa.SEA.elevatorUI.impl;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
 import univavignon.m1informatique.aa.SEA.commontype.State;
 import univavignon.m1informatique.aa.SEA.controlSystem.api.IControlSystem;
-import univavignon.m1informatique.aa.SEA.controlSystem.impl.DummyControlSystem;
 import univavignon.m1informatique.aa.SEA.elevator.impl.Elevator;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUI;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUIRequest;

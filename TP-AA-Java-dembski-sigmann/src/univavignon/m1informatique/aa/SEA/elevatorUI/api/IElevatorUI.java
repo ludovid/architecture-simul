@@ -7,6 +7,6 @@ public interface IElevatorUI
 {
 
 	void setIUser(IUser iUser);
-	void stopRequest(int level, Direction direction);
+	void stopRequest(int level, Direction direction, IElevatorUIRequest uiRequest);
 
 }

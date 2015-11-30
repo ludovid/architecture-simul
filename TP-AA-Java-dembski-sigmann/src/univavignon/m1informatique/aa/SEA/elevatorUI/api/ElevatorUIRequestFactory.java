@@ -12,7 +12,7 @@ public class ElevatorUIRequestFactory
 	/**
 	 * 
 	 */
-	public IElevatorUI ElevatorUI;
+	public static IElevatorUI ElevatorUI;
 
 	/**
 	 * Getter of ElevatorUI
@@ -29,12 +29,29 @@ public class ElevatorUIRequestFactory
 	{ 
 		 this.ElevatorUI = ElevatorUI; 
 	}
-	/**
-	 * 
-	 * @param level 
-	 * @param direction 
-	 * @param user 
+	
+	/*
+	 * méthodes appelées par flow lorsqu'il y a une requête à envoyer
 	 */
 	
+	// méthode appel
+	public static void createCall(int level, Direction direction, IUser user) 
+	 { 
+		ElevatorUIRequest Call=null;
+		Call.level=level;
+		Call.direction=direction;
+		Call.user=user;
+		ElevatorUI.stopRequest(level, direction, Call);  
+	 }
+	
+	// méthode déplacement
+	public static void createMove(int level, IUser user) 
+  	{
+		ElevatorUIRequest Move=null;
+		Move.level=level;
+		Move.direction=null;
+		Move.user=user;
+		ElevatorUI.stopRequest(level, null, Move); 
+	} 
 
 }

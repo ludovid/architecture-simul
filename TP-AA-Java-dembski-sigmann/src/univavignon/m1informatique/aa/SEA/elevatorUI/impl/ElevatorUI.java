@@ -62,6 +62,7 @@ public class ElevatorUI implements IElevatorUI
 		//CHANGER recRequest par le nom de la méthode
 		//un call aura une direction et un move non ...		 
 		  cs.stopRequest(level, direction, null); 
+		  // faire un notify
 	 }
 
 	/**

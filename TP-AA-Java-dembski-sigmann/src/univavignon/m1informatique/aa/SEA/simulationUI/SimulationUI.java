@@ -2,8 +2,11 @@ package univavignon.m1informatique.aa.SEA.simulationUI;
 
 import java.io.File;
 
+import javax.xml.parsers.ParserConfigurationException;
+
 import univavignon.m1informatique.aa.SEA.elevator.api.ElevatorFactory;
 import univavignon.m1informatique.aa.SEA.flow.api.FlowFactory;
+import univavignon.m1informatique.aa.SEA.flow.api.IFlow;
 import univavignon.m1informatique.aa.SEA.flow.api.IFlowCommand;
 
 public class SimulationUI
@@ -11,8 +14,9 @@ public class SimulationUI
 	
 	/**
 	 * 	Configure l'ensemble du système et interagie avec l'utilisateur
+	 * @throws ParserConfigurationException 
 	 */
-	public static void main(String[]args)
+	public static void main(String[]args) throws ParserConfigurationException
 	{		
 		// Récupération des informations pour la créaton de la simulation
 		System.out.println("Bienvenue au système de simulation d'ascenceur.\n");
@@ -25,7 +29,7 @@ public class SimulationUI
 		
 		// Création des composants de la simulation
 		ElevatorFactory.buildElevator(new File(fileElevator));
-		IFlowCommand flowCommand = FlowFactory.buildFlow(fileFlow, simuContraction, simuOrigine);
+		IFlow flowCommand = FlowFactory.buildFlow(fileFlow, simuContraction, simuOrigine);
 		
 		// Lancement de la simulation
 		boolean b = IHM.displayBooleanInteract("Commancer la simulation ?");

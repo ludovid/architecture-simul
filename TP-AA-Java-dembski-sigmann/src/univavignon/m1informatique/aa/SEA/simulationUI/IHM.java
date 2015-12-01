@@ -13,16 +13,16 @@ public class IHM
 	 */
 	public static String displayFileRequestInteract(String outString)
 	{
-		Scanner sc = new Scanner(System.in);
+		Scanner sc;
 		String r;
-		boolean b;
+		boolean b = false;
 		do{
 			System.out.println(outString);
+			sc = new Scanner(System.in);
 			r = sc.nextLine();
 			b = FileControleur.fileExist(r);
 			if(b==false)	System.out.println("Fichier inexistant.");
 		}while(b==false);
-		sc.close();
 		return r;
 	}
 	
@@ -33,15 +33,15 @@ public class IHM
 	 */
 	public static boolean displayBooleanInteract(String outString)
 	{
-		Scanner sc = new Scanner(System.in);
+		Scanner sc;
 		String r;
 		do{
 			System.out.println(outString);
 			System.out.println("y: accepter | n: refuser");
+			sc = new Scanner(System.in);
 			r = sc.nextLine();
 			if(r!="y"&&r!="n")	System.out.println("Réponse incorrecte.");
 		}while(r!="y"&&r!="n");
-		sc.close();
 		return (r=="y");
 	}
 	
@@ -55,7 +55,6 @@ public class IHM
 		Scanner sc = new Scanner(System.in);
 		System.out.println(outString);
 		String disp = sc.nextLine();
-		sc.close();
 		return Long.parseLong(disp);
 	}
 	
@@ -69,13 +68,13 @@ public class IHM
 	public static long displaySecurNumberInteract(String outString, long min, long max)
 	{
 		long r;
-		Scanner sc = new Scanner(System.in);
+		Scanner sc;
 		do{
 			System.out.println(outString);
 			System.out.println("Minimum: "+Long.toString(min)+", Maximum: "+Long.toString(max));
+			sc = new Scanner(System.in);
 			r = Long.parseLong(sc.nextLine());
 		}while(r>max||r<min);
-		sc.close();
 		return r;
 	}
 	

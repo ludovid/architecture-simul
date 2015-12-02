@@ -2,6 +2,11 @@ package univavignon.m1informatique.aa.SEA.sequencer.api;
 
 import java.util.*;
 
+/**
+ * ProcessExecutor contiendra tous les process 
+ * @author Ludovic
+ *
+ */
 public class ProcessExecutor
 {
 	private ArrayList<Process> listProcess = new ArrayList<>();

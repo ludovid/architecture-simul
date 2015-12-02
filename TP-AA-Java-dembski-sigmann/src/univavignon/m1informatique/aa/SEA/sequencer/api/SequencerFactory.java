@@ -3,7 +3,7 @@ package univavignon.m1informatique.aa.SEA.sequencer.api;
 import univavignon.m1informatique.aa.SEA.sequencer.impl.DummySequencer;
 
 /**
- * 
+ * crée un séquenceur
  * @author uapv1102294
  *
  */

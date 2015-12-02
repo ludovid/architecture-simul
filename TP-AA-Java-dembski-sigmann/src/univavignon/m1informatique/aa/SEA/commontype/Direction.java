@@ -1,9 +1,13 @@
 package univavignon.m1informatique.aa.SEA.commontype;
-//test
+/**
+ * Direction for Elevator direction
+ * @author Ludovic
+ *
+ */
 public enum Direction { 
-	Up,
-	Down,
-	None;
+	Up,	//quand Elevator monte
+	Down, //quand Elevator descend
+	None; //quand Elevator ne bouge pas
 	
 	
  }

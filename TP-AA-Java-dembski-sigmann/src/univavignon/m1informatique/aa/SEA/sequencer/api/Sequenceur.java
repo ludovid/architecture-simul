@@ -1,5 +1,10 @@
 package univavignon.m1informatique.aa.SEA.sequencer.api;
 
+/**
+ * La base de tout
+ * @author Ludovic
+ *
+ */
 public class Sequenceur
 {
 	//Singleton

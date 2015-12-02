@@ -1,5 +1,10 @@
 package univavignon.m1informatique.aa.SEA.sequencer.api;
 
+/**
+ * unité qui prend un event et qui le traite
+ * @author Ludovic
+ *
+ */
 public class Process
 {
 	private Event event;
@@ -22,6 +27,10 @@ public class Process
 		ccc=cc;
 	}
 	
+	/**
+	 * active pendant time ms
+	 * @param time
+	 */
 	public void active(long time)
 	{
 		System.out.println("Call Active "+ccc+", time : "+time);

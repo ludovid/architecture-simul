@@ -1,5 +1,10 @@
 package univavignon.m1informatique.aa.SEA.sequencer.api;
 
+/**
+ * Classe qui gère la simulation de l'ascenseur
+ * @author Ludovic
+ *
+ */
 public class SimulationElevator
 {
 	// Singleton

@@ -1,5 +1,10 @@
 package univavignon.m1informatique.aa.SEA.sequencer.api;
 
+/**
+ * Classe gérant le temps de la simulation
+ * @author Ludovic
+ *
+ */
 public class SimulationTimeConverteur
 {
 	// Singleton

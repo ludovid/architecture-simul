@@ -2,6 +2,7 @@ package univavignon.m1informatique.aa.SEA.sequencer.api;
 
 import java.util.Date;
 
+
 public class Timer
 {
 	SimulationTimeConverteur convertTime;

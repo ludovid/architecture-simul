@@ -4,9 +4,9 @@ import java.util.Collections;
 
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
 import univavignon.m1informatique.aa.SEA.commontype.State;
+import univavignon.m1informatique.aa.SEA.controlSystem.api.IElevatorNotifier;
 import univavignon.m1informatique.aa.SEA.elevator.api.ElevatorCommandFactory;
 import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
-import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorNotifier;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUIRequest;
 
 public class Optimizer implements IElevatorNotifier {

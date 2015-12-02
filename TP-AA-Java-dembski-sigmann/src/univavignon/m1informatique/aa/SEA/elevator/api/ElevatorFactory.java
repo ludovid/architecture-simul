@@ -1,5 +1,7 @@
 package univavignon.m1informatique.aa.SEA.elevator.api;
 import univavignon.m1informatique.aa.SEA.elevator.impl.ElevatorShaft;
+import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
+import univavignon.m1informatique.aa.SEA.sequencer.api.Sequenceur;
 
 import java.io.*;
 
@@ -11,9 +13,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 public class ElevatorFactory {
-
-	// public ElevatorShaft ES;
-	
 	/**
 	 * 
 	 * @param setting 
@@ -34,6 +33,8 @@ public class ElevatorFactory {
 			double distanceBetweenFloors = Double.parseDouble(list.item(4).getTextContent());
 			// charger fichier xml et mettre les données pour construire les objets de l'elevator
 			ElevatorShaft ES = new ElevatorShaft(elevatorHeight, floorNumber, distanceBetweenFloors, doorTime, speed);
+			Event e=null;
+			
 			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

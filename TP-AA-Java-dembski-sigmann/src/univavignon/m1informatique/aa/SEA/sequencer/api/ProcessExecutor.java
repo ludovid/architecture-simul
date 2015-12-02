@@ -27,7 +27,7 @@ public class ProcessExecutor
 	public ProcessExecutor(long Contraction, long Origine)
 	{
 		timeMini = -1;
-		isInit = false;
+		setInit(false);
 		simuElev = SimulationElevator.create(Contraction, Origine);
 		timer = new Timer(simuElev);
 	}
@@ -40,7 +40,7 @@ public class ProcessExecutor
 	
 	public void initialise()
 	{
-		isInit=true;
+		setInit(true);
 		simuElev.start();
 		Process tmp;
 		for(int i=0;i<listProcess.size();i++)
@@ -52,7 +52,7 @@ public class ProcessExecutor
 
 	public void sequence()
 	{ 
-		if(isInit=false) initialise();
+		if(setInit(false)) initialise();
 		Process tmp;
 		while(true)
 		{
@@ -63,6 +63,15 @@ public class ProcessExecutor
 				tmp.active(simuElev.Time());
 			}
 		}
+	}
+
+	public boolean isInit() {
+		return isInit;
+	}
+
+	public boolean setInit(boolean isInit) {
+		this.isInit = isInit;
+		return isInit;
 	} 
 
 }

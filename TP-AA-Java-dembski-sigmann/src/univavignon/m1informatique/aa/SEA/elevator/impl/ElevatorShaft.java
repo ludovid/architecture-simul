@@ -4,7 +4,7 @@ package univavignon.m1informatique.aa.SEA.elevator.impl;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
 import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
 import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
-
+import univavignon.m1informatique.aa.SEA.controlSystem.api.IElevatorNotifier;
 
 public class ElevatorShaft implements Event, IElevatorCommand{
 

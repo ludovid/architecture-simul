@@ -128,9 +128,9 @@ public class Flow implements IFlow {
 	 */
 	public void compute(File file) throws FileNotFoundException{
 		// on crée un scanner
-		Scanner scanner = new Scanner(file);
+		try(Scanner scanner = new Scanner(file)) {
 		// on prépare les variables pour stocker les valeurs
-		String str = null;
+		//String str = null;
 		 int heureAppel, etageDepart, etageArrivee;
 		 while (scanner.hasNextLine()) {
 			 try {
@@ -151,6 +151,7 @@ public class Flow implements IFlow {
 			 catch (NoSuchElementException e){
 				 System.out.println("Il n'y a plus d'éléments");
 			 }
+		 }
 	}
 	}
 

@@ -10,18 +10,11 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
-import univavignon.m1informatique.aa.SEA.commontype.Direction;
-import univavignon.m1informatique.aa.SEA.commontype.State;
-import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
-import univavignon.m1informatique.aa.SEA.elevator.impl.Elevator;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.ElevatorUIRequestFactory;
-import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUI;
 import univavignon.m1informatique.aa.SEA.flow.api.IFlow;
 import univavignon.m1informatique.aa.SEA.flow.api.IUser;
 import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
 import univavignon.m1informatique.aa.SEA.sequencer.api.Sequenceur;
-import univavignon.m1informatique.aa.SEA.sequencer.impl.DummySequencer;
-import univavignon.m1informatique.aa.SEA.sequencer.api.Event;
 
 public class Flow implements IFlow {
 

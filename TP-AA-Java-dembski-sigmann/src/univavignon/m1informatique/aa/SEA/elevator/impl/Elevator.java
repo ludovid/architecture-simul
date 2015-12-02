@@ -1,6 +1,5 @@
 package univavignon.m1informatique.aa.SEA.elevator.impl;
 
-import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
 import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorNotifier;
 import univavignon.m1informatique.aa.SEA.commontype.State;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;

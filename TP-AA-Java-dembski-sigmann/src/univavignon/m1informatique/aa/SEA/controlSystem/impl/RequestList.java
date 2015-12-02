@@ -2,7 +2,6 @@ package univavignon.m1informatique.aa.SEA.controlSystem.impl;
 
 import java.util.ArrayList;
 
-import univavignon.m1informatique.aa.SEA.commontype.Direction;
 import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
 
 public class RequestList {

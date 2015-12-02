@@ -1,7 +1,5 @@
 package univavignon.m1informatique.aa.SEA.elevatorUI.api;
 
-import univavignon.m1informatique.aa.SEA.elevator.impl.Elevator;
-import univavignon.m1informatique.aa.SEA.elevatorUI.impl.DummyElevatorUI;
 import univavignon.m1informatique.aa.SEA.elevatorUI.impl.ElevatorUIRequest;
 import univavignon.m1informatique.aa.SEA.flow.api.IUser;
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
@@ -25,9 +23,9 @@ public class ElevatorUIRequestFactory
 	/**
 	 * Setter of ElevatorUI
 	 */
-	public void setElevatorUI(IElevatorUI ElevatorUI)
+	public void setElevatorUI(IElevatorUI ElevatorUI1)
 	{ 
-		 this.ElevatorUI = ElevatorUI; 
+		 ElevatorUI = ElevatorUI1; 
 	}
 	
 	/*
@@ -37,20 +35,14 @@ public class ElevatorUIRequestFactory
 	// méthode appel
 	public static void createCall(int level, Direction direction, IUser user) 
 	 { 
-		ElevatorUIRequest Call=null;
-		Call.level=level;
-		Call.direction=direction;
-		Call.user=user;
+		ElevatorUIRequest Call=new ElevatorUIRequest(direction,level,user);
 		ElevatorUI.stopRequest(level, direction, Call);  
 	 }
 	
 	// méthode déplacement
 	public static void createMove(int level, IUser user) 
   	{
-		ElevatorUIRequest Move=null;
-		Move.level=level;
-		Move.direction=null;
-		Move.user=user;
+		ElevatorUIRequest Move=new ElevatorUIRequest(null, level,user);
 		ElevatorUI.stopRequest(level, null, Move); 
 	} 
 

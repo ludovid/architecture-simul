@@ -1,9 +1,7 @@
 package univavignon.m1informatique.aa.SEA.elevatorUI.impl;
 
 import univavignon.m1informatique.aa.SEA.commontype.Direction;
-import univavignon.m1informatique.aa.SEA.commontype.State;
 import univavignon.m1informatique.aa.SEA.controlSystem.api.IControlSystem;
-import univavignon.m1informatique.aa.SEA.elevator.impl.Elevator;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUI;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.IElevatorUIRequest;
 import univavignon.m1informatique.aa.SEA.flow.api.IUser;
@@ -17,7 +15,7 @@ public class ElevatorUI implements IElevatorUI
 	// constructeur
 	public ElevatorUI(IControlSystem controlsystem) {
 		super();
-		this.cs = controlsystem;
+		cs = controlsystem;
 	}
 	
 

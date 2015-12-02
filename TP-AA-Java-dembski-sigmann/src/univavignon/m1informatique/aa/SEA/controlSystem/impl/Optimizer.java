@@ -69,7 +69,7 @@ public class Optimizer implements IElevatorNotifier {
 				 *  requête traité.
 				 */
 				if(RequestList.currentList.get(0).getLevel() == level) {
-					RequestList.currentList.get(0).uiRequest.notify(0);
+					RequestList.currentList.get(0).uiRequest.notifyStop(0);
 					RequestList.currentList.remove(0);
 				}
 				command.move(direction);

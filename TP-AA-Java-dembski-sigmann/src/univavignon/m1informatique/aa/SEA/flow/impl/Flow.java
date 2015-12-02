@@ -251,8 +251,6 @@ public class Flow implements IFlow {
 				// on indique à quel moment l'utilisateur est arrivé
 				u.setEnd(t);
 			}
-				
-			
 		}
 	}
 

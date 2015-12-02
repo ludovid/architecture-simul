@@ -1,5 +1,8 @@
 package univavignon.m1informatique.aa.SEA.simulationUI;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -13,12 +16,11 @@ public class IHM
 	 */
 	public static String displayFileRequestInteract(String outString)
 	{
-		Scanner sc;
+		Scanner sc = new Scanner(System.in);
 		String r;
-		boolean b = false;
+		boolean b;
 		do{
 			System.out.println(outString);
-			sc = new Scanner(System.in);
 			r = sc.nextLine();
 			b = FileControleur.fileExist(r);
 			if(b==false)	System.out.println("Fichier inexistant.");
@@ -33,16 +35,14 @@ public class IHM
 	 */
 	public static boolean displayBooleanInteract(String outString)
 	{
-		Scanner sc;
+		Scanner sc = new Scanner(System.in);
 		String r;
 		do{
-			System.out.println(outString);
-			System.out.println("y: accepter | n: refuser");
-			sc = new Scanner(System.in);
+			System.out.println(outString+"\ny: accepter | n: refuser");
 			r = sc.nextLine();
-			if(r!="y"&&r!="n")	System.out.println("Réponse incorrecte.");
-		}while(r!="y"&&r!="n");
-		return (r=="y");
+			if(!(r.equals("y")||r.equals("n")))	System.out.println("Réponse incorrecte.");
+		}while(!(r.equals("y")||r.equals("n")));
+		return r.equals("y");
 	}
 	
 	/**
@@ -54,8 +54,7 @@ public class IHM
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println(outString);
-		String disp = sc.nextLine();
-		return Long.parseLong(disp);
+		return Long.parseLong(sc.nextLine());
 	}
 	
 	/**
@@ -68,13 +67,12 @@ public class IHM
 	public static long displaySecurNumberInteract(String outString, long min, long max)
 	{
 		long r;
-		Scanner sc;
+		Scanner sc = new Scanner(System.in);
 		do{
 			System.out.println(outString);
 			System.out.println("Minimum: "+Long.toString(min)+", Maximum: "+Long.toString(max));
-			sc = new Scanner(System.in);
 			r = Long.parseLong(sc.nextLine());
-		}while(r>max||r<min);
+		}while(r<min||r>max);
 		return r;
 	}
 	

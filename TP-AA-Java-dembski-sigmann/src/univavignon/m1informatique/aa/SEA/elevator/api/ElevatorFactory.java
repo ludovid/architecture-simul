@@ -19,7 +19,7 @@ public class ElevatorFactory {
 	 * @return 
 	 * @throws ParserConfigurationException 
 	 */
-	public static boolean buildElevator(File setting) throws ParserConfigurationException {
+	public static IElevatorCommand buildElevator(File setting) throws ParserConfigurationException {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder;
 		try {
@@ -33,14 +33,14 @@ public class ElevatorFactory {
 			double distanceBetweenFloors = Double.parseDouble(list.item(4).getTextContent());
 			// charger fichier xml et mettre les données pour construire les objets de l'elevator
 			ElevatorShaft ES = new ElevatorShaft(elevatorHeight, floorNumber, distanceBetweenFloors, doorTime, speed);
-			Event e=null;
+			//Event e=null;
 			
-			return true;
+			return ES;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return null;
 	}
 	
 }

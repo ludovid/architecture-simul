@@ -10,6 +10,7 @@ import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Scanner;
 
+import univavignon.m1informatique.aa.SEA.elevator.api.IElevatorCommand;
 import univavignon.m1informatique.aa.SEA.elevatorUI.api.ElevatorUIRequestFactory;
 import univavignon.m1informatique.aa.SEA.flow.api.IFlow;
 import univavignon.m1informatique.aa.SEA.flow.api.IUser;
@@ -36,10 +37,12 @@ public class Flow implements IFlow {
 	
 	// déclaration du Sequencer
 	private Sequenceur seq;
+
+	private IElevatorCommand iElevatorCommand;
 	
 	
 	// constructeur
-	public Flow(final String flowFile, long time, long time2) {
+	public Flow(final String flowFile, IElevatorCommand ie, long time, long time2) {
 		/*
 		 *  initialisation du Sequencer
 		 *  avec paramètres temporels origine et durée
@@ -47,6 +50,7 @@ public class Flow implements IFlow {
 		seq = new Sequenceur (time, time2);
 		this.simuContraction=time;
 		this.simuOrigine=time2;
+		this.iElevatorCommand=ie;
 		
 		// liste utilisateurs et générateur de chiffres
 		this.users = new ArrayList<IUser>();
